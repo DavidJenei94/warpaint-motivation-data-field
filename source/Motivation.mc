@@ -74,85 +74,90 @@ class Motivation {
 	//! @param dc Device Content
 	//! @return motivational quote splitted with line breaks
 	public function setMotivationalQuote(dc as Dc) as String {
-        var motivation = getRandomHardcodedMotivationalQuote();
-    	
-		// Split automatically with spaces and length
-		var motivationLength = motivation.length();
-		var motivationFirstPart = "";
-    	var motivationSecondPart = "";
-    	var motivationThirdPart = "";
 
-		setFontSize(dc, motivation);
-    	var screenWidth = dc.getWidth();
-    	var motivationLengthInPixels = dc.getTextWidthInPixels(motivation, font);
-    	var maxTextLength = screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent;
+		var isMotivationSet = false;
 
-    	var firstMiddleSpaceIndex = null;
-    	var secondMiddleSpaceIndex = null;
-    	
-    	if (motivationLengthInPixels <= screenWidth * _secondLineWidthPercent * 0.95) {
-    		motivationFirstPart = motivation;
-    	} else if (motivationLengthInPixels <= maxTextLength) {
- 	    	// split text at 0.50 and 1.00 and find first spaces
-			// if not found it goes back with some characters
-			var firstSplitPart = 0.49;
- 	    	var secondSplitPart = 1.00;
- 	    	
- 	    	do {
-		    	motivationSecondPart = motivation.substring(Math.ceil(motivationLength * firstSplitPart), motivationLength); 
-				firstMiddleSpaceIndex = motivationSecondPart.find(" ");
-				if (firstMiddleSpaceIndex != null) {
-					firstMiddleSpaceIndex = motivationSecondPart.find(" ") + Math.ceil(motivationLength * firstSplitPart);
-					motivationFirstPart = motivation.substring(0, firstMiddleSpaceIndex);
-				}
+		var motivationFirstPart as String;
+		var motivationSecondPart as String;
+		var motivationThirdPart as String;
 
-		    	firstSplitPart -= 0.03;
-				if (firstSplitPart < 0) {
-					break;
-				}
-	    	} while (dc.getTextWidthInPixels(motivationFirstPart, font) >= screenWidth * _firstLineWidthPercent || firstMiddleSpaceIndex == null);
-	    	
-	    	do {
-		    	motivationThirdPart = motivation.substring(Math.ceil(motivationLength * secondSplitPart), motivationLength);
-		    	secondMiddleSpaceIndex = motivationThirdPart.find(" ");
-		    	if (secondMiddleSpaceIndex != null) {	    	
-		    		secondMiddleSpaceIndex = motivationThirdPart.find(" ") + Math.ceil(motivationLength * secondSplitPart);
-			    	motivationThirdPart = motivation.substring(secondMiddleSpaceIndex + 1, motivationLength); //+1 to skip the space at the start of it 
-			    	
-			    	motivationSecondPart = motivation.substring(firstMiddleSpaceIndex + 1, secondMiddleSpaceIndex);
-			   } else if (firstMiddleSpaceIndex != null) {
-			    	//motivationThirdPart remains empty
-			    	motivationThirdPart = "";
-			    	motivationSecondPart = motivation.substring(firstMiddleSpaceIndex + 1, motivationLength);
-			    } else {
-					motivationFirstPart = motivation.substring(0, 15) + "...";
-					motivationSecondPart = "TOO LONG WORD";
-					motivationThirdPart = "IN TEXT";
-					break;
-			    }
-
-			    secondSplitPart -= 0.03;
-				if (secondSplitPart < 0) {
-					break;
-				}
-			} while (dc.getTextWidthInPixels(motivationSecondPart, font) >= screenWidth * _secondLineWidthPercent);
+		do {
+			var motivation = getRandomHardcodedMotivationalQuote();
 			
-			firstSplitPart = (firstSplitPart * 100).toNumber();
-			secondSplitPart = (secondSplitPart * 100).toNumber();
-			if (firstSplitPart == secondSplitPart) {
-				motivationFirstPart = motivation.substring(0, 15) + "...";
-				motivationSecondPart = "TOO LONG WORD";
-				motivationThirdPart = "IN TEXT";				
-			} else if (dc.getTextWidthInPixels(motivationThirdPart, font) >= screenWidth * _thirdLineWidthPercent) {
-				// too long motivational quote
-				motivationThirdPart = "...";
-	  		}
-    	} else {
-			// too long motivational quote
-			motivationFirstPart = motivation.substring(0, 15) + "...";
-			motivationSecondPart = "TOO LONG";
-			motivationThirdPart = "TEXT";
-  		}
+			// Split automatically with spaces and length
+			var motivationLength = motivation.length();
+			motivationFirstPart = "";
+			motivationSecondPart = "";
+			motivationThirdPart = "";
+
+			setFontSize(dc, motivation);
+			var screenWidth = dc.getWidth();
+			var motivationLengthInPixels = dc.getTextWidthInPixels(motivation, font);
+			var maxTextLength = screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent;
+
+			var firstMiddleSpaceIndex = null;
+			var secondMiddleSpaceIndex = null;
+			
+			if (motivationLengthInPixels <= screenWidth * _secondLineWidthPercent * 0.95) {
+				isMotivationSet = true;
+				motivationFirstPart = motivation;
+			} else if (motivationLengthInPixels <= maxTextLength) {
+				isMotivationSet = true;
+				// split text at 0.50 and 1.00 and find first spaces
+				// if not found it goes back with some characters
+				var firstSplitPart = 0.49;
+				var secondSplitPart = 1.00;
+				
+				do {
+					motivationSecondPart = motivation.substring(Math.ceil(motivationLength * firstSplitPart), motivationLength); 
+					firstMiddleSpaceIndex = motivationSecondPart.find(" ");
+					if (firstMiddleSpaceIndex != null) {
+						firstMiddleSpaceIndex = motivationSecondPart.find(" ") + Math.ceil(motivationLength * firstSplitPart);
+						motivationFirstPart = motivation.substring(0, firstMiddleSpaceIndex);
+					}
+
+					firstSplitPart -= 0.03;
+					if (firstSplitPart < 0) {
+						break;
+					}
+				} while (dc.getTextWidthInPixels(motivationFirstPart, font) >= screenWidth * _firstLineWidthPercent || firstMiddleSpaceIndex == null);
+				
+				do {
+					motivationThirdPart = motivation.substring(Math.ceil(motivationLength * secondSplitPart), motivationLength);
+					secondMiddleSpaceIndex = motivationThirdPart.find(" ");
+					if (secondMiddleSpaceIndex != null) {	    	
+						secondMiddleSpaceIndex = motivationThirdPart.find(" ") + Math.ceil(motivationLength * secondSplitPart);
+						motivationThirdPart = motivation.substring(secondMiddleSpaceIndex + 1, motivationLength); //+1 to skip the space at the start of it 
+						
+						motivationSecondPart = motivation.substring(firstMiddleSpaceIndex + 1, secondMiddleSpaceIndex);
+					} else if (firstMiddleSpaceIndex != null) {
+						//motivationThirdPart remains empty
+						motivationThirdPart = "";
+						motivationSecondPart = motivation.substring(firstMiddleSpaceIndex + 1, motivationLength);
+					} else {
+						isMotivationSet = false;
+						break;	
+					}
+
+					secondSplitPart -= 0.03;
+					if (secondSplitPart < 0) {
+						break;
+					}
+				} while (dc.getTextWidthInPixels(motivationSecondPart, font) >= screenWidth * _secondLineWidthPercent);
+				
+				firstSplitPart = (firstSplitPart * 100).toNumber();
+				secondSplitPart = (secondSplitPart * 100).toNumber();
+				if (firstSplitPart == secondSplitPart || (dc.getTextWidthInPixels(motivationThirdPart, font) >= screenWidth * _thirdLineWidthPercent)) {
+					isMotivationSet = false;				
+				}
+			} else {
+				isMotivationSet = false;
+			}
+
+			if (!isMotivationSet) {
+				System.println("Failed motivation: " + motivationFirstPart + " " + motivationSecondPart + " " + motivationThirdPart);
+			}
+		} while (!isMotivationSet);
 
 		if (motivationSecondPart.equals("")) {
 			return motivationFirstPart;
@@ -160,7 +165,7 @@ class Motivation {
 			return motivationFirstPart + "\n" + motivationSecondPart;
 		} else {
 			return motivationFirstPart + "\n" + motivationSecondPart + "\n" + motivationThirdPart; 
-		}    	
+		}  
 	}
 
 

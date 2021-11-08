@@ -1,1 +1,34 @@
 project.manifest = manifest.xml
+
+# Exclude other source directories (default behaviour is to include).
+base.sourcePath = source
+
+# Low memory devices exclude some hardcoded motivational quotes to save memory on devices CIQ 1.x
+d2bravo.excludeAnnotations = $(d2bravo.excludeAnnotations);low_memory_motivation
+d2bravo_titanium.excludeAnnotations = $(d2bravo_titanium.excludeAnnotations);low_memory_motivation
+fenix3.excludeAnnotations = $(fenix3.excludeAnnotations);low_memory_motivation
+fenix3_hr.excludeAnnotations = $(fenix3_hr.excludeAnnotations);low_memory_motivation
+fr230.excludeAnnotations = $(fr230.excludeAnnotations);low_memory_motivation
+fr235.excludeAnnotations = $(fr235.excludeAnnotations);low_memory_motivation
+fr630.excludeAnnotations = $(fr630.excludeAnnotations);low_memory_motivation
+fr920xt.excludeAnnotations = $(fr920xt.excludeAnnotations);low_memory_motivation
+vivoactive.excludeAnnotations = $(vivoactive.excludeAnnotations);low_memory_motivation
+# Some other device with low memory
+fr735xt.excludeAnnotations = $(fr735xt.excludeAnnotations);low_memory_motivation
+vivoactive_hr.excludeAnnotations = $(vivoactive_hr.excludeAnnotations);low_memory_motivation
+
+# Low memory devices exclude some hardcoded motivational quotes to save memory on devices CIQ 1.x
+# Low memory devices exclude some hardcoded motivational quotes to save memory (mainly 1.4.0 round watches because they have sunrise sunset)
+d2bravo.resourcePath = $(d2bravo.resourcePath);resources-low_memory
+d2bravo_titanium.resourcePath = $(d2bravo_titanium.resourcePath);resources-low_memory
+fenix3.resourcePath = $(fenix3.resourcePath);resources-low_memory
+fenix3_hr.resourcePath = $(fenix3_hr.resourcePath);resources-low_memory
+fr230.resourcePath = $(fr230.resourcePath);resources-low_memory
+fr235.resourcePath = $(fr235.resourcePath);resources-low_memory
+fr630.resourcePath = $(fr630.resourcePath);resources-low_memory
+fr920xt.resourcePath = $(fr920xt.resourcePath);resources-low_memory
+vivoactive.resourcePath = $(vivoactive.resourcePath);resources-low_memory
+
+# Some other device with low memory
+fr735xt.resourcePath = $(fr735xt.resourcePath);resources-low_memory
+vivoactive_hr.resourcePath = $(vivoactive_hr.resourcePath);resources-low_memory

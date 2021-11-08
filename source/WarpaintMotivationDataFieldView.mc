@@ -90,9 +90,6 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         var lineWidths = new Number[3];
         var fontBase = 0; // X_TINY
 
-        System.println("dfPanelHeight: " + dfPanelHeight);
-        System.println("screenHeight: " + screenHeight);
-
         if  (deviceSettings.screenShape == System.SCREEN_SHAPE_RECTANGLE) {
             lineWidths = [0.90, 0.90, 0.90];
             fontBase = Graphics.FONT_LARGE;
