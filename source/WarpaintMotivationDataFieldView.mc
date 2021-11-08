@@ -3,6 +3,8 @@ import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.WatchUi;
 
+// Global variable
+var _motivationString as String;
 
 class WarpaintMotivationDataFieldAlert extends WatchUi.DataFieldAlert {
 
@@ -18,8 +20,7 @@ class WarpaintMotivationDataFieldAlert extends WatchUi.DataFieldAlert {
         dc.clear();
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
 
-        var motivation = "First part\nSecond part\nThird part";
-        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2, Graphics.FONT_SMALL, motivation, (Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER));
+        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2, Graphics.FONT_SMALL, _motivationString, (Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER));
     }
 
 }
@@ -32,7 +33,6 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     private var _textPositionY as Number;
 
     private var _motivation as Motivation;
-    private var _motivationString as String;
     private var _isMotviationalQuoteSet as Boolean;
 
     private var _font as Number;
@@ -124,8 +124,9 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     //! @param timerTime the activity time in ms
     private function checkMotivationalQuoteRefresh(timerTime as Number) as Void {
         var currentSeconds = (timerTime * MILLISECONDS_TO_SECONDS).toNumber(); // current seconds passed in activity
+        System.println("currentSeconds: " + currentSeconds);
         if (timerTime > 1000 && // provide to not change in the first second
-            currentSeconds % 5 == 0 && //change interval
+            currentSeconds % motivationalQuoteChangeInterval == 0 && //change interval
             _lastCheckSeconds != currentSeconds) { // the activity is on
 
             _lastCheckSeconds = currentSeconds;
@@ -138,10 +139,6 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     //! @param dc Device Content
     function onUpdate(dc as Dc) as Void {
 
-        // if ((WatchUi.DataField has :showAlert) && System.getClockTime().sec % 60 == 0) {
-        //     showAlert(new WarpaintMotivationDataFieldAlert());
-        // }
-
         if (getBackgroundColor() == Graphics.COLOR_BLACK) {
             dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         } else {
@@ -151,6 +148,11 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
 
         if (!_isMotviationalQuoteSet) {
             _motivationString = _motivation.setMotivationalQuote(dc);
+
+            if ((WatchUi.DataField has :showAlert)) {
+                showAlert(new WarpaintMotivationDataFieldAlert());
+            }
+
             _isMotviationalQuoteSet = true;
         }
 

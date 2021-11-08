@@ -1,5 +1,23 @@
 <strings>
     <string id="AppName">Warpaint Motivation Data Field</string>
 
-    <string id="label">My Value</string>
+    <string id="AppVersionTitle">Warpaint Motivation Data Field version</string>
+
+    <string id="MotivationalQuoteChangeIntervalTitle">Warpaint Motivation Data Field version</string>
+    <string id="Sec5">5 seconds</string>
+    <string id="Sec10">10 seconds</string>
+    <string id="Min5">5 minutes</string>
+    <string id="Min10">10 minutes</string>
+    <string id="Min15">15 minutes</string>
+    <string id="Min20">20 minutes</string>
+    <string id="Min30">30 minutes</string>
+    <string id="Hour1">1 hour</string>
+    <string id="Hour2">2 hours</string>
+    <string id="Hour3">3 hours</string>
+
+    <string id="AlertsTitle">Show Motivational Quote on Alert</string>
+    <string id="AlertsPrompt">To Show Alerts it is required to enable them separately in activity settings</string>
+    <string id="AlertsOff">Do not show on alert</string>
+    <string id="AlertsOnly">Show Motivational Quote only on Alert</string>
+    <string id="AlertsToo">Show Motivational Quote on Alert and on Data Field too</string>
 </strings>

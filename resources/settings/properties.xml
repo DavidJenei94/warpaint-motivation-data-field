@@ -1,0 +1,10 @@
+<properties>
+
+	<property id="appVersion" type="string">1.0.0</property>
+
+	<property id="MotivationalQuoteChangeInterval" type="number">600</property>
+    <property id="LowMemoryForMotivationalQuotes" type="boolean">false</property>
+
+	<property id="DisplayAlerts" type="number">0</property>
+
+</properties>

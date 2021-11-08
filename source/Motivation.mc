@@ -167,13 +167,6 @@ class Motivation {
 	//! Get a random motivational quote 
 	//! @return a random quote from the list hard coded
 	private function getRandomHardcodedMotivationalQuote() as String {
-		var lowMemory = false;
-		// if (Toybox.Application has :Storage) {
-		// 	lowMemory = Properties.getValue("LowMemoryForMotivationalQuotes");
-		// } else {
-		// 	lowMemory = getApp().getProperty("LowMemoryForMotivationalQuotes");
-		// }
-
 		if (lowMemory) {
 			var randomIndex = Math.rand() % hardcodedMotivationalQuotesBasic.size();
 			return hardcodedMotivationalQuotesBasic[randomIndex];

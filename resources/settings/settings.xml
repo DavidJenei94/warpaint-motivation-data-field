@@ -1,0 +1,28 @@
+<settings>
+	<setting propertyKey="@Properties.appVersion" title="@Strings.AppVersionTitle">
+        <settingConfig type="alphaNumeric" readonly="true" />
+    </setting>
+
+	<setting propertyKey="@Properties.MotivationalQuoteChangeInterval" title="@Strings.MotivationalQuoteChangeIntervalTitle">
+        <settingConfig type="list">
+            <listEntry value="5">@Strings.Sec5</listEntry>
+            <listEntry value="10">@Strings.Sec10</listEntry>
+            <listEntry value="300">@Strings.Min5</listEntry>
+            <listEntry value="600">@Strings.Min10</listEntry>
+            <listEntry value="900">@Strings.Min15</listEntry>
+			<listEntry value="1200">@Strings.Min20</listEntry>
+            <listEntry value="1800">@Strings.Min30</listEntry>
+			<listEntry value="3600">@Strings.Hour1</listEntry>
+            <listEntry value="7200">@Strings.Hour2</listEntry>
+            <listEntry value="10800">@Strings.Hour3</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.DisplayAlerts" title="@Strings.AlertsTitle" prompt="@Strings.AlertsPrompt">
+        <settingConfig type="list">
+			<listEntry value="0">@Strings.AlertsOff</listEntry>
+            <listEntry value="1">@Strings.AlertsOnly</listEntry>
+            <listEntry value="2">@Strings.AlertsToo</listEntry>
+		</settingConfig>
+	</setting>
+</settings>
