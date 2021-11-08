@@ -76,6 +76,7 @@ class Motivation {
 	public function setMotivationalQuote(dc as Dc) as String {
 
 		var isMotivationSet = false;
+		// var counter = 0;
 
 		var motivationFirstPart as String;
 		var motivationSecondPart as String;
@@ -154,10 +155,11 @@ class Motivation {
 				isMotivationSet = false;
 			}
 
-			if (!isMotivationSet) {
-				System.println("Failed motivation: " + motivationFirstPart + " " + motivationSecondPart + " " + motivationThirdPart);
-			}
-		} while (!isMotivationSet);
+			// if (!isMotivationSet) {
+			// 	System.println("Failed motivation: " + motivationFirstPart + " " + motivationSecondPart + " " + motivationThirdPart);
+			// }
+			// counter++;
+		} while while (!isMotivationSet); //(counter < 50);
 
 		if (motivationSecondPart.equals("")) {
 			return motivationFirstPart;
