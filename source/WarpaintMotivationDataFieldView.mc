@@ -3,46 +3,112 @@ import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.WatchUi;
 
+
+class WarpaintMotivationDataFieldAlert extends WatchUi.DataFieldAlert {
+
+    //! Constructor
+    public function initialize() {
+        DataFieldAlert.initialize();
+    }
+
+    //! Update the view
+    //! @param dc Device context
+    public function onUpdate(dc as Dc) as Void {
+        dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
+        dc.clear();
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+
+        var motivation = "First part\nSecond part\nThird part";
+        dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2, Graphics.FONT_SMALL, motivation, (Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER));
+    }
+
+}
+
 class WarpaintMotivationDataFieldView extends WatchUi.DataField {
 
-    hidden var mValue as Numeric;
+    private const MILLISECONDS_TO_SECONDS = 0.001;
+
+    private var _textPositionX as Number;
+    private var _textPositionY as Number;
+
+    private var _motivation as Motivation;
+    private var _motivationString as String;
+    private var _isMotviationalQuoteSet as Boolean;
+
+    private var _font as Number;
+
+    private var _lastCheckSeconds as Number;
 
     function initialize() {
         DataField.initialize();
-        mValue = 0.0f;
+        _lastCheckSeconds = 0;
+        _isMotviationalQuoteSet = false;
+        _motivation = new Motivation();
     }
 
     // Set your layout here. Anytime the size of obscurity of
     // the draw context is changed this will be called.
     function onLayout(dc as Dc) as Void {
         var obscurityFlags = DataField.getObscurityFlags();
+        var width = dc.getWidth();
+        var height = dc.getHeight();
 
         // Top left quadrant so we'll use the top left layout
         if (obscurityFlags == (OBSCURE_TOP | OBSCURE_LEFT)) {
-            View.setLayout(Rez.Layouts.TopLeftLayout(dc));
+            _textPositionX = width * 0.75;
+            _textPositionY = height * 0.75;
 
         // Top right quadrant so we'll use the top right layout
         } else if (obscurityFlags == (OBSCURE_TOP | OBSCURE_RIGHT)) {
-            View.setLayout(Rez.Layouts.TopRightLayout(dc));
+            _textPositionX = width * 0.25;
+            _textPositionY = height * 0.75;
 
         // Bottom left quadrant so we'll use the bottom left layout
         } else if (obscurityFlags == (OBSCURE_BOTTOM | OBSCURE_LEFT)) {
-            View.setLayout(Rez.Layouts.BottomLeftLayout(dc));
+            _textPositionX = width * 0.75;
+            _textPositionY = height * 0.25;
 
         // Bottom right quadrant so we'll use the bottom right layout
         } else if (obscurityFlags == (OBSCURE_BOTTOM | OBSCURE_RIGHT)) {
-            View.setLayout(Rez.Layouts.BottomRightLayout(dc));
+            _textPositionX = width * 0.25;
+            _textPositionY = height * 0.25;
 
         // Use the generic, centered layout
         } else {
-            View.setLayout(Rez.Layouts.MainLayout(dc));
-            var labelView = View.findDrawableById("label");
-            labelView.locY = labelView.locY - 16;
-            var valueView = View.findDrawableById("value");
-            valueView.locY = valueView.locY + 7;
+            _textPositionX = width * 0.50;
+            _textPositionY = height * 0.50;
         }
 
-        (View.findDrawableById("label") as Text).setText(Rez.Strings.label);
+        selectFont(width, height);
+        
+    }
+
+    private function selectFont(dfPanelWidth as Integer, dfPanelHeight as Integer) {
+        var deviceSettings = System.getDeviceSettings();
+        var screenWidth = deviceSettings.screenWidth;
+        var screenHeight = deviceSettings.screenHeight;
+        var lineWidths = new Number[3];
+        var fontBase = 0; // X_TINY
+
+        System.println("dfPanelHeight: " + dfPanelHeight);
+        System.println("screenHeight: " + screenHeight);
+
+        if  (deviceSettings.screenShape == System.SCREEN_SHAPE_RECTANGLE) {
+            lineWidths = [0.90, 0.90, 0.90];
+            fontBase = Graphics.FONT_LARGE;
+        } else if (dfPanelHeight > screenHeight / 2) {
+            lineWidths = [0.80, 0.90, 0.80];
+            fontBase = Graphics.FONT_LARGE;
+        } else if (dfPanelHeight <= screenHeight / 2 && dfPanelHeight >= screenHeight / 3) {
+            lineWidths = [0.60, 0.70, 0.60];
+            fontBase = Graphics.FONT_SMALL;
+        } else {
+            lineWidths = [0.80, 0.90, 0.80];
+            fontBase = Graphics.FONT_XTINY;
+        }
+
+        _motivation.setLineWidths(lineWidths[0], lineWidths[1], lineWidths[2]);
+        _motivation.setFontBase(fontBase);
     }
 
     // The given info object contains all the current workout information.
@@ -50,33 +116,45 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     // Note that compute() and onUpdate() are asynchronous, and there is no
     // guarantee that compute() will be called before onUpdate().
     function compute(info as Activity.Info) as Void {
-        // See Activity.Info in the documentation for available information.
-        if(info has :currentHeartRate){
-            if(info.currentHeartRate != null){
-                mValue = info.currentHeartRate as Number;
-            } else {
-                mValue = 0.0f;
-            }
+        var timerTime = info.timerTime;
+        checkMotivationalQuoteRefresh(timerTime);
+    }
+
+    //! Check if motivational quote needs refresh
+    //! @param timerTime the activity time in ms
+    private function checkMotivationalQuoteRefresh(timerTime as Number) as Void {
+        var currentSeconds = (timerTime * MILLISECONDS_TO_SECONDS).toNumber(); // current seconds passed in activity
+        if (timerTime > 1000 && // provide to not change in the first second
+            currentSeconds % 5 == 0 && //change interval
+            _lastCheckSeconds != currentSeconds) { // the activity is on
+
+            _lastCheckSeconds = currentSeconds;
+            _isMotviationalQuoteSet = false;
         }
     }
 
-    // Display the value you computed here. This will be called
-    // once a second when the data field is visible.
+    //! Display the value you computed here. This will be called
+    //! once a second when the data field is visible.
+    //! @param dc Device Content
     function onUpdate(dc as Dc) as Void {
-        // Set the background color
-        (View.findDrawableById("Background") as Text).setColor(getBackgroundColor());
 
-        // Set the foreground color and value
-        var value = View.findDrawableById("value") as Text;
+        // if ((WatchUi.DataField has :showAlert) && System.getClockTime().sec % 60 == 0) {
+        //     showAlert(new WarpaintMotivationDataFieldAlert());
+        // }
+
         if (getBackgroundColor() == Graphics.COLOR_BLACK) {
-            value.setColor(Graphics.COLOR_WHITE);
+            dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         } else {
-            value.setColor(Graphics.COLOR_BLACK);
+            dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_WHITE);
         }
-        value.setText(mValue.format("%.2f"));
+        dc.clear();
 
-        // Call parent's onUpdate(dc) to redraw the layout
-        View.onUpdate(dc);
+        if (!_isMotviationalQuoteSet) {
+            _motivationString = _motivation.setMotivationalQuote(dc);
+            _isMotviationalQuoteSet = true;
+        }
+
+        dc.drawText(_textPositionX, _textPositionY, _motivation.font, _motivationString, (Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER));
     }
 
 }
