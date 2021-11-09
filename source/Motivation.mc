@@ -281,6 +281,10 @@ class Motivation {
 		}
 	}
 
+	public function setFont(font as Number) as Void {
+		self.font = font;
+	}
+
 	public function setFontBase(fontBase as Integer) as Void {
 		_fontBase = fontBase;
 	}

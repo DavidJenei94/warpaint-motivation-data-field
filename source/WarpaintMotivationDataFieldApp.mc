@@ -5,6 +5,7 @@ import Toybox.WatchUi;
 // Global variables
 var motivationalQuoteChangeInterval as Number;
 var lowMemory as Integer;
+var displayAlerts as Integer;
 
 enum { 
     QUOTES_BASIC,
@@ -48,9 +49,11 @@ class WarpaintMotivationDataFieldApp extends Application.AppBase {
         if (Toybox.Application has :Storage) {
 			motivationalQuoteChangeInterval = Properties.getValue("MotivationalQuoteChangeInterval");
             lowMemory = Properties.getValue("LowMemoryForMotivationalQuotes");
+            displayAlerts = Properties.getValue("DisplayAlerts");
 		} else {
 			motivationalQuoteChangeInterval = getApp().getProperty("MotivationalQuoteChangeInterval");
             lowMemory = getApp().getProperty("LowMemoryForMotivationalQuotes");
+            displayAlerts = getApp().getProperty("DisplayAlerts");  
 		}
     }
 
