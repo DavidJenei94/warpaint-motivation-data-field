@@ -4,7 +4,14 @@ import Toybox.WatchUi;
 
 // Global variables
 var motivationalQuoteChangeInterval as Number;
-var lowMemory as Boolean;
+var lowMemory as Integer;
+var displayAlerts as Integer;
+
+enum { 
+    QUOTES_BASIC,
+    QUOTES_STANDARD,
+    QUOTES_EXTRA
+}
 
 enum { 
     DISPLAY_ALERT_OFF,
@@ -14,16 +21,17 @@ enum {
 
 class WarpaintMotivationDataFieldApp extends Application.AppBase {
 
+    //! Constructor
     function initialize() {
         AppBase.initialize();
         setGlobalVariables();
     }
 
-    // onStart() is called on application start up
+    //! onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
     }
 
-    // onStop() is called when your application is exiting
+    //! onStop() is called when your application is exiting
     function onStop(state as Dictionary?) as Void {
     }
 
@@ -32,9 +40,11 @@ class WarpaintMotivationDataFieldApp extends Application.AppBase {
         return [ new WarpaintMotivationDataFieldView() ] as Array<Views or InputDelegates>;
     }
 
-    // New app settings have been received so trigger a UI update
+    //! New app settings have been received so trigger a UI update
     function onSettingsChanged() as Void {
         setGlobalVariables();
+
+        WatchUi.requestUpdate();
     }
 
     //! Set global variables
@@ -42,14 +52,18 @@ class WarpaintMotivationDataFieldApp extends Application.AppBase {
         if (Toybox.Application has :Storage) {
 			motivationalQuoteChangeInterval = Properties.getValue("MotivationalQuoteChangeInterval");
             lowMemory = Properties.getValue("LowMemoryForMotivationalQuotes");
+            displayAlerts = Properties.getValue("DisplayAlerts");
 		} else {
 			motivationalQuoteChangeInterval = getApp().getProperty("MotivationalQuoteChangeInterval");
             lowMemory = getApp().getProperty("LowMemoryForMotivationalQuotes");
+            displayAlerts = getApp().getProperty("DisplayAlerts");  
 		}
     }
 
 }
 
+//! Give back App
+//! @return App
 function getApp() as WarpaintMotivationDataFieldApp {
     return Application.getApp() as WarpaintMotivationDataFieldApp;
 }

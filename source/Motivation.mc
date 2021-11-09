@@ -1,6 +1,4 @@
-import Toybox.Application;
 import Toybox.WatchUi;
-import Toybox.System;
 import Toybox.Math;
 
 class Motivation {
@@ -17,6 +15,7 @@ class Motivation {
     private var _secondLineWidthPercent as Number;
     private var _thirdLineWidthPercent as Number;
 
+	// 55
     private var hardcodedMotivationalQuotesBasic = [
 		"I DIDN'T COME THIS FAR TO ONLY COME THIS FAR",
 		"PAIN IS TEMPORARY, BUT GREATNESS LASTS FOREVER",
@@ -72,7 +71,10 @@ class Motivation {
 		"SUCCESS REQUIRES NO EXPLANATION",
 		"NO SHORTCUT TO SUCCESS.",
 		"OBSTACLES ARE THERE TO MAKE YOU STRONGER",
-		"SEE YOUR PROBLEMS AS CHALLENGES",
+		"SEE YOUR PROBLEMS AS CHALLENGES"
+	];
+
+	(:low_memory_standard) private var hardcodedMotivationalQuotesStandard = [
 		"THE HARDER THE TASK, THE MORE STRENGTH YOU GAIN",
 		"TAKE OWNERSHIP OF YOUR LIFE",
 		"TAKE THINGS TO THE NEXT LEVEL",
@@ -92,14 +94,67 @@ class Motivation {
 		"THE CLOCK IS TICKING. DON'T WASTE YOUR TIME",
 		"WINNERS ALWAYS GET UP",
 		"LET YOUR PAIN PUSH YOU TO GREATNESS",
-		"HOW MUCH LONGER ARE YOU GONNA WAIT?"
+		"HOW MUCH LONGER ARE YOU GONNA WAIT?",
+		"NO MORE WAITING FOR THE PERFECT MOMENT",
+		"NOW IS THE TIME TO BE STRONG",
+		"LIFE HAS NO LIMITS EXCEPT THOSE YOU CREATE",
+		"BE A VICTOR AND NOT A VICTIM!",
+		"YOU CONTROL YOUR DESTINY",
+		"AS LONG AS YOU KEEP FIGHTING, YOU WIN",
+		"EVERY DAY IS A BEGINNING",
+		"DO NOT STOP AT THE MIDDLE OF THE PROCESS",
+		"DEFY THE ODDS",
+		"YOU ALWAYS HAVE TO GIVE ALL TO BE THE BEST",
+		"LEAD YOURSELF TO VICTORY",
+		"BE OBSESSED ON WHAT YOU WANT",
+		"THE GREAT LIFE IS IN FRONT OF YOU, NOT BEHIND YOU",
+		"FIND A REASON TO KEEP GOING",
+		"MOVE FORWARD EVERY SINGLE DAY",
+		"NEVER LOSE THE FIRE IN YOUR EYES",
+		"SHOW UP EVERY DAY",
+		"TIRED OF BEING AVERAGE",
+		"CONFIDENCE IS THE KEY TO GET AHEAD IN LIFE",
+		"KEEP YOUR EYES ON THE PRIZE",
+		"DON'T LET SOME FAILURES BREAK YOU",
+		"I CAN. BECAUSE I AM CAPABLE",
+		"I WILL. BECAUSE I AM STRONG",
+		"I MUST. BECAUSE THEY ARE COUNTING ON ME",
+		"SLEEP, SWEAT, GRIND, REPEAT",
+		"FACE EVERYTHING AND RISE",
+		"IT TAKES COURAGE TO BE SUCCESSFUL",
+		"AT THE END OF PAIN IS SUCCESS",
+		"GET A REWARD FOR YOUR PAIN",
+		"IF YOU'RE READY TO QUIT, DON'T GET STARTED",
+		"WITH YOUR MINDSET YOU CHANGE YOUR WORLD",
+		"DO NOT SETTLE FOR THE EASY ROAD",
+		"BURN YOUR GOAL INTO YOUR SOUL",
+		"IT WILL TAKE TIME, BUT IT WILL BE WORTH IT",
+		"NEVER GIVE UP, GREAT THINGS TAKE TIME",
+		"DON'T CRY TO QUIT, CRY TO KEEP GOING",
+		"IT'S HARD TO BEAT THE ONE WHO DOESN'T GIVE UP",
+		"IT WILL HURT, BUT IT WILL BE WORTH IT",
+		"YOU CAN MAKE IT",
+		"STRIVE FOR GREATNESS",
+		"BELIEVE IN YOURSELF",
+		"I WILL NOT BE OUTWORKED",
+		"TAKE YOURSELF OUT OF YOUR COMFORT ZONE",
+		"WHATEVER YOU DO, ALWAYS GIVE 100%",
+		"SACRIFICE LEADS AND GAINS FOLLOW",
+		"IF YOU'RE GOING TO HAVE IT, RISE AND GRIND",
+		"WHERE THERE'S A WILL, THERE'S A WAY",
+		"DESTROY THE WEAKNESS IN YOUR HEAD",
+		"IT'S TIME TO DO WHAT REAL BEASTS DO",
+		"YOU'LL NEVER FEEL 100% READY. DO IT ANYWAY",
+		"EVERY DECISION HAS CONSEQUENCES",
+		"IF YOU DO A JOB, DO IT RIGHT",
+		"EASY IS NOT AN OPTION",
+		"MASTER THE MONOTONOUS TO ACHIEVE"
 	];
 
-	(:low_memory_motivation) private var hardcodedMotivationalQuotesExtra = [
+	(:low_memory_extra) private var hardcodedMotivationalQuotesExtra = [
 	];
 
     //! Constructor
-    //! @param dc Device Content
     function initialize() {
         _isMotivationalQuoteSet = true;
     }
@@ -117,6 +172,7 @@ class Motivation {
 		var motivationSecondPart as String;
 		var motivationThirdPart as String;
 
+		// do until a motivational quote is not set that has enough space
 		do {
 			var motivation = getRandomHardcodedMotivationalQuote();
 			
@@ -126,6 +182,7 @@ class Motivation {
 			motivationSecondPart = "";
 			motivationThirdPart = "";
 
+			// determine font size according to line widths
 			setFontSize(dc, motivation);
 			var screenWidth = dc.getWidth();
 			var motivationLengthInPixels = dc.getTextWidthInPixels(motivation, font);
@@ -134,6 +191,7 @@ class Motivation {
 			var firstMiddleSpaceIndex = null;
 			var secondMiddleSpaceIndex = null;
 			
+			// SPlit motivational quote
 			if (motivationLengthInPixels <= screenWidth * _secondLineWidthPercent * 0.95) {
 				isMotivationSet = true;
 				motivationFirstPart = motivation;
@@ -205,32 +263,51 @@ class Motivation {
 		}  
 	}
 
-
 	//! Get a random motivational quote 
 	//! @return a random quote from the list hard coded
 	private function getRandomHardcodedMotivationalQuote() as String {
-		if (lowMemory) {
+		if (lowMemory == QUOTES_BASIC) {
 			var randomIndex = Math.rand() % hardcodedMotivationalQuotesBasic.size();
 			return hardcodedMotivationalQuotesBasic[randomIndex];
-		} else {
-			var randomIndex = Math.rand() % (hardcodedMotivationalQuotesBasic.size() + hardcodedMotivationalQuotesExtra.size());
+		} else if (lowMemory == QUOTES_STANDARD) {
+			var randomIndex = Math.rand() % (hardcodedMotivationalQuotesBasic.size() + hardcodedMotivationalQuotesStandard.size());
 			var hardcodedMotivationalQuotesAll = [];
 			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesBasic);
+			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesStandard);
+			return hardcodedMotivationalQuotesAll[randomIndex];
+		} else {
+			var randomIndex = Math.rand() % (hardcodedMotivationalQuotesBasic.size() + hardcodedMotivationalQuotesStandard.size() + hardcodedMotivationalQuotesExtra.size());
+			var hardcodedMotivationalQuotesAll = [];
+			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesBasic);
+			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesStandard);
 			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesExtra);
 			return hardcodedMotivationalQuotesAll[randomIndex];
 		}
 	}
 
+	//! Set font for motivational quote
+	//! When not gethardcodedquote is called but anything else
+	//! @param font the selected font
+	public function setFont(font as Number) as Void {
+		self.font = font;
+	}
+
+	//! Set fontBase (maximum font size) for motivational quote 
+	//! According to data field panel sizes
+	//! @param fontBase the selected maximum font size
 	public function setFontBase(fontBase as Integer) as Void {
 		_fontBase = fontBase;
 	}
 
+	//! Set the Font size for motivational quote according to df panel size
+	//! @param dc Device Content (current panel)
+	//! @param motivation the selected motivational quote
 	private function setFontSize(dc as Dc, motivation as String) as Void {
 		var screenWidth = dc.getWidth();
     	var motivationLengthInPixels = 0;
     	var maxTextLength = screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent;
 	
-		// _fontBase 4->0
+		// _fontBase 4->0, FONT_LARGE->FONT_XTINY
 		for (var iFont = _fontBase; iFont >= 0; iFont--){
 			motivationLengthInPixels = dc.getTextWidthInPixels(motivation, iFont);
 			maxTextLength = 0.75 * (screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent);
@@ -243,9 +320,11 @@ class Motivation {
 		font = 0;
 	}
 
-	public function setLineWidths(firstLineWidth as Number, secondLineWidth as Number, thirdLineWidth as Number) as Void {
-		_firstLineWidthPercent = firstLineWidth;
-        _secondLineWidthPercent = secondLineWidth;
-        _thirdLineWidthPercent = thirdLineWidth;
+	//! Set the line widths for the quote according to the dc panel sizes
+	//! @param firstLineWidth The length of the lines in % of the total dc panel size
+	public function setLineWidths(lineWidths as Array<Number>) as Void {
+		_firstLineWidthPercent = lineWidths[0];
+        _secondLineWidthPercent = lineWidths[1];
+        _thirdLineWidthPercent = lineWidths[2];
 	}
 }

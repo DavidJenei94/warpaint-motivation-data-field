@@ -3,7 +3,7 @@
 	<property id="appVersion" type="string">1.0.0</property>
 
 	<property id="MotivationalQuoteChangeInterval" type="number">600</property>
-    <property id="LowMemoryForMotivationalQuotes" type="boolean">false</property>
+    <property id="LowMemoryForMotivationalQuotes" type="number">2</property>
 
 	<property id="DisplayAlerts" type="number">0</property>
 

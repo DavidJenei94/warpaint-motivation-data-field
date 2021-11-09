@@ -35,19 +35,22 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     private var _motivation as Motivation;
     private var _isMotviationalQuoteSet as Boolean;
 
-    private var _font as Number;
+    private var _isNarrowField as Boolean;
 
     private var _lastCheckSeconds as Number;
+    private var _startedActivity as Boolean;
 
     function initialize() {
         DataField.initialize();
         _lastCheckSeconds = 0;
         _isMotviationalQuoteSet = false;
+        _startedActivity = false;
         _motivation = new Motivation();
     }
 
-    // Set your layout here. Anytime the size of obscurity of
-    // the draw context is changed this will be called.
+    //! Set the layout here. Anytime the size of obscurity of
+    //! the draw context is changed this will be called.
+    //! @param dc Device Content
     function onLayout(dc as Dc) as Void {
         var obscurityFlags = DataField.getObscurityFlags();
         var width = dc.getWidth();
@@ -55,23 +58,23 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
 
         // Top left quadrant so we'll use the top left layout
         if (obscurityFlags == (OBSCURE_TOP | OBSCURE_LEFT)) {
-            _textPositionX = width * 0.75;
-            _textPositionY = height * 0.75;
+            _textPositionX = width * 0.60;
+            _textPositionY = height * 0.60;
 
         // Top right quadrant so we'll use the top right layout
         } else if (obscurityFlags == (OBSCURE_TOP | OBSCURE_RIGHT)) {
-            _textPositionX = width * 0.25;
-            _textPositionY = height * 0.75;
+            _textPositionX = width * 0.40;
+            _textPositionY = height * 0.66;
 
         // Bottom left quadrant so we'll use the bottom left layout
         } else if (obscurityFlags == (OBSCURE_BOTTOM | OBSCURE_LEFT)) {
-            _textPositionX = width * 0.75;
-            _textPositionY = height * 0.25;
+            _textPositionX = width * 0.60;
+            _textPositionY = height * 0.40;
 
         // Bottom right quadrant so we'll use the bottom right layout
         } else if (obscurityFlags == (OBSCURE_BOTTOM | OBSCURE_RIGHT)) {
-            _textPositionX = width * 0.25;
-            _textPositionY = height * 0.25;
+            _textPositionX = width * 0.40;
+            _textPositionY = height * 0.40;
 
         // Use the generic, centered layout
         } else {
@@ -80,9 +83,11 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         }
 
         selectFont(width, height);
-        
     }
 
+    //! Select font for quote according to panel size
+    //! @param dfPanelWidth The width of the current dc panel
+    //! @param dfPanelHeight The height of the current dc panel
     private function selectFont(dfPanelWidth as Integer, dfPanelHeight as Integer) {
         var deviceSettings = System.getDeviceSettings();
         var screenWidth = deviceSettings.screenWidth;
@@ -104,16 +109,22 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
             fontBase = Graphics.FONT_XTINY;
         }
 
-        _motivation.setLineWidths(lineWidths[0], lineWidths[1], lineWidths[2]);
+        _isNarrowField = dfPanelWidth < screenWidth * 0.75 ? true : false;
+
+        _motivation.setLineWidths(lineWidths);
         _motivation.setFontBase(fontBase);
     }
 
-    // The given info object contains all the current workout information.
-    // Calculate a value and save it locally in this method.
-    // Note that compute() and onUpdate() are asynchronous, and there is no
-    // guarantee that compute() will be called before onUpdate().
+    //! The given info object contains all the current workout information.
+    //! Calculate a value and save it locally in this method.
+    //! Note that compute() and onUpdate() are asynchronous, and there is no
+    //! guarantee that compute() will be called before onUpdate().
+    //! @param info as the Activity Info
     function compute(info as Activity.Info) as Void {
         var timerTime = info.timerTime;
+        if (!_startedActivity && timerTime != 0) { // equals 0 ms, so does not started the activity
+            _startedActivity = true;
+        }
         checkMotivationalQuoteRefresh(timerTime);
     }
 
@@ -122,8 +133,8 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     private function checkMotivationalQuoteRefresh(timerTime as Number) as Void {
         var currentSeconds = (timerTime * MILLISECONDS_TO_SECONDS).toNumber(); // current seconds passed in activity
         System.println("currentSeconds: " + currentSeconds);
-        if (timerTime > 1000 && // provide to not change in the first second
-            currentSeconds % motivationalQuoteChangeInterval == 0 && //change interval
+        if (timerTime > 0 && // provide to not change in the first second
+            currentSeconds % motivationalQuoteChangeInterval == 1 && //change interval
             _lastCheckSeconds != currentSeconds) { // the activity is on
 
             _lastCheckSeconds = currentSeconds;
@@ -144,9 +155,17 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         dc.clear();
 
         if (!_isMotviationalQuoteSet) {
-            _motivationString = _motivation.setMotivationalQuote(dc);
+            if (!_startedActivity || displayAlerts == DISPLAY_ALERT_ONLY) {
+                _motivationString = "WARPAINT\nMOTIVATION";
+                _motivation.setFont(Graphics.FONT_SMALL);
+            } else if (_isNarrowField) {
+                _motivationString = "NARROW\nFIELD";
+                _motivation.setFont(Graphics.FONT_SMALL);
+            } else {
+                _motivationString = _motivation.setMotivationalQuote(dc);
+            }
 
-            if ((WatchUi.DataField has :showAlert)) {
+            if ((WatchUi.DataField has :showAlert) && displayAlerts != DISPLAY_ALERT_OFF) {
                 showAlert(new WarpaintMotivationDataFieldAlert());
             }
 
@@ -155,5 +174,4 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
 
         dc.drawText(_textPositionX, _textPositionY, _motivation.font, _motivationString, (Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER));
     }
-
 }
