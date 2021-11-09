@@ -1,6 +1,4 @@
-import Toybox.Application;
 import Toybox.WatchUi;
-import Toybox.System;
 import Toybox.Math;
 
 class Motivation {
@@ -157,7 +155,6 @@ class Motivation {
 	];
 
     //! Constructor
-    //! @param dc Device Content
     function initialize() {
         _isMotivationalQuoteSet = true;
     }
@@ -174,6 +171,7 @@ class Motivation {
 		var motivationSecondPart as String;
 		var motivationThirdPart as String;
 
+		// do until a motivational quote is not set that has enough space
 		do {
 			var motivation = getRandomHardcodedMotivationalQuote();
 			
@@ -183,6 +181,7 @@ class Motivation {
 			motivationSecondPart = "";
 			motivationThirdPart = "";
 
+			// determine font size according to line widths
 			setFontSize(dc, motivation);
 			var screenWidth = dc.getWidth();
 			var motivationLengthInPixels = dc.getTextWidthInPixels(motivation, font);
@@ -191,6 +190,7 @@ class Motivation {
 			var firstMiddleSpaceIndex = null;
 			var secondMiddleSpaceIndex = null;
 			
+			// SPlit motivational quote
 			if (motivationLengthInPixels <= screenWidth * _secondLineWidthPercent * 0.95) {
 				isMotivationSet = true;
 				motivationFirstPart = motivation;
@@ -258,7 +258,6 @@ class Motivation {
 		}  
 	}
 
-
 	//! Get a random motivational quote 
 	//! @return a random quote from the list hard coded
 	private function getRandomHardcodedMotivationalQuote() as String {
@@ -281,20 +280,29 @@ class Motivation {
 		}
 	}
 
+	//! Set font for motivational quote
+	//! When not gethardcodedquote is called but anything else
+	//! @param font the selected font
 	public function setFont(font as Number) as Void {
 		self.font = font;
 	}
 
+	//! Set fontBase (maximum font size) for motivational quote 
+	//! According to data field panel sizes
+	//! @param fontBase the selected maximum font size
 	public function setFontBase(fontBase as Integer) as Void {
 		_fontBase = fontBase;
 	}
 
+	//! Set the Font size for motivational quote according to df panel size
+	//! @param dc Device Content (current panel)
+	//! @param motivation the selected motivational quote
 	private function setFontSize(dc as Dc, motivation as String) as Void {
 		var screenWidth = dc.getWidth();
     	var motivationLengthInPixels = 0;
     	var maxTextLength = screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent;
 	
-		// _fontBase 4->0
+		// _fontBase 4->0, FONT_LARGE->FONT_XTINY
 		for (var iFont = _fontBase; iFont >= 0; iFont--){
 			motivationLengthInPixels = dc.getTextWidthInPixels(motivation, iFont);
 			maxTextLength = 0.75 * (screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent);
@@ -307,9 +315,11 @@ class Motivation {
 		font = 0;
 	}
 
-	public function setLineWidths(firstLineWidth as Number, secondLineWidth as Number, thirdLineWidth as Number) as Void {
-		_firstLineWidthPercent = firstLineWidth;
-        _secondLineWidthPercent = secondLineWidth;
-        _thirdLineWidthPercent = thirdLineWidth;
+	//! Set the line widths for the quote according to the dc panel sizes
+	//! @param firstLineWidth The length of the lines in % of the total dc panel size
+	public function setLineWidths(lineWidths as Array<Number>) as Void {
+		_firstLineWidthPercent = lineWidths[0];
+        _secondLineWidthPercent = lineWidths[1];
+        _thirdLineWidthPercent = lineWidths[2];
 	}
 }

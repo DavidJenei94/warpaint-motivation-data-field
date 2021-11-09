@@ -21,16 +21,17 @@ enum {
 
 class WarpaintMotivationDataFieldApp extends Application.AppBase {
 
+    //! Constructor
     function initialize() {
         AppBase.initialize();
         setGlobalVariables();
     }
 
-    // onStart() is called on application start up
+    //! onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
     }
 
-    // onStop() is called when your application is exiting
+    //! onStop() is called when your application is exiting
     function onStop(state as Dictionary?) as Void {
     }
 
@@ -39,9 +40,11 @@ class WarpaintMotivationDataFieldApp extends Application.AppBase {
         return [ new WarpaintMotivationDataFieldView() ] as Array<Views or InputDelegates>;
     }
 
-    // New app settings have been received so trigger a UI update
+    //! New app settings have been received so trigger a UI update
     function onSettingsChanged() as Void {
         setGlobalVariables();
+
+        WatchUi.requestUpdate();
     }
 
     //! Set global variables
@@ -59,6 +62,8 @@ class WarpaintMotivationDataFieldApp extends Application.AppBase {
 
 }
 
+//! Give back App
+//! @return App
 function getApp() as WarpaintMotivationDataFieldApp {
     return Application.getApp() as WarpaintMotivationDataFieldApp;
 }

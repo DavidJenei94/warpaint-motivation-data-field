@@ -48,8 +48,9 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         _motivation = new Motivation();
     }
 
-    // Set your layout here. Anytime the size of obscurity of
-    // the draw context is changed this will be called.
+    //! Set the layout here. Anytime the size of obscurity of
+    //! the draw context is changed this will be called.
+    //! @param dc Device Content
     function onLayout(dc as Dc) as Void {
         var obscurityFlags = DataField.getObscurityFlags();
         var width = dc.getWidth();
@@ -82,9 +83,11 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         }
 
         selectFont(width, height);
-        
     }
 
+    //! Select font for quote according to panel size
+    //! @param dfPanelWidth The width of the current dc panel
+    //! @param dfPanelHeight The height of the current dc panel
     private function selectFont(dfPanelWidth as Integer, dfPanelHeight as Integer) {
         var deviceSettings = System.getDeviceSettings();
         var screenWidth = deviceSettings.screenWidth;
@@ -108,14 +111,15 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
 
         _isNarrowField = dfPanelWidth < screenWidth * 0.75 ? true : false;
 
-        _motivation.setLineWidths(lineWidths[0], lineWidths[1], lineWidths[2]);
+        _motivation.setLineWidths(lineWidths);
         _motivation.setFontBase(fontBase);
     }
 
-    // The given info object contains all the current workout information.
-    // Calculate a value and save it locally in this method.
-    // Note that compute() and onUpdate() are asynchronous, and there is no
-    // guarantee that compute() will be called before onUpdate().
+    //! The given info object contains all the current workout information.
+    //! Calculate a value and save it locally in this method.
+    //! Note that compute() and onUpdate() are asynchronous, and there is no
+    //! guarantee that compute() will be called before onUpdate().
+    //! @param info as the Activity Info
     function compute(info as Activity.Info) as Void {
         var timerTime = info.timerTime;
         if (!_startedActivity && timerTime != 0) { // equals 0 ms, so does not started the activity
@@ -128,7 +132,6 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     //! @param timerTime the activity time in ms
     private function checkMotivationalQuoteRefresh(timerTime as Number) as Void {
         var currentSeconds = (timerTime * MILLISECONDS_TO_SECONDS).toNumber(); // current seconds passed in activity
-        System.println("currentSeconds: " + currentSeconds);
         if (timerTime > 0 && // provide to not change in the first second
             currentSeconds % motivationalQuoteChangeInterval == 1 && //change interval
             _lastCheckSeconds != currentSeconds) { // the activity is on
@@ -167,8 +170,6 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
 
             _isMotviationalQuoteSet = true;
         }
-
-
 
         dc.drawText(_textPositionX, _textPositionY, _motivation.font, _motivationString, (Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER));
     }
