@@ -35,8 +35,6 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     private var _motivation as Motivation;
     private var _isMotviationalQuoteSet as Boolean;
 
-    private var _isNarrowField as Boolean;
-
     private var _lastCheckSeconds as Number;
     private var _startedActivity as Boolean;
 
@@ -97,7 +95,11 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
 
         if  (deviceSettings.screenShape == System.SCREEN_SHAPE_RECTANGLE) {
             lineWidths = [0.90, 0.90, 0.90];
-            fontBase = Graphics.FONT_LARGE;
+            if (dfPanelHeight < screenHeight / 3) {
+                fontBase = Graphics.FONT_SMALL;
+            } else {
+                fontBase = Graphics.FONT_LARGE;
+            }
         } else if (dfPanelHeight > screenHeight / 2) {
             lineWidths = [0.80, 0.90, 0.80];
             fontBase = Graphics.FONT_LARGE;
@@ -109,7 +111,10 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
             fontBase = Graphics.FONT_XTINY;
         }
 
-        _isNarrowField = dfPanelWidth < screenWidth * 0.75 ? true : false;
+        // mainly half the screen width
+        if (dfPanelWidth < screenWidth * 0.75) {
+            fontBase = Graphics.FONT_XTINY;
+        }
 
         _motivation.setLineWidths(lineWidths);
         _motivation.setFontBase(fontBase);
@@ -132,6 +137,7 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     //! @param timerTime the activity time in ms
     private function checkMotivationalQuoteRefresh(timerTime as Number) as Void {
         var currentSeconds = (timerTime * MILLISECONDS_TO_SECONDS).toNumber(); // current seconds passed in activity
+        System.println("currentSeconds: " + currentSeconds);
         if (timerTime > 0 && // provide to not change in the first second
             currentSeconds % motivationalQuoteChangeInterval == 1 && //change interval
             _lastCheckSeconds != currentSeconds) { // the activity is on
@@ -156,9 +162,6 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         if (!_isMotviationalQuoteSet) {
             if (!_startedActivity || displayAlerts == DISPLAY_ALERT_ONLY) {
                 _motivationString = "WARPAINT\nMOTIVATION";
-                _motivation.setFont(Graphics.FONT_SMALL);
-            } else if (_isNarrowField) {
-                _motivationString = "NARROW\nFIELD";
                 _motivation.setFont(Graphics.FONT_SMALL);
             } else {
                 _motivationString = _motivation.setMotivationalQuote(dc);
