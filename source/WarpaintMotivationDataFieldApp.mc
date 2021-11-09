@@ -4,7 +4,13 @@ import Toybox.WatchUi;
 
 // Global variables
 var motivationalQuoteChangeInterval as Number;
-var lowMemory as Boolean;
+var lowMemory as Integer;
+
+enum { 
+    QUOTES_BASIC,
+    QUOTES_STANDARD,
+    QUOTES_EXTRA
+}
 
 enum { 
     DISPLAY_ALERT_OFF,

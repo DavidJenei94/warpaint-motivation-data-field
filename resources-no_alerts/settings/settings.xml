@@ -1,0 +1,11 @@
+<settings>
+
+    <setting propertyKey="@Properties.DisplayAlerts" title="@Strings.AlertsTitle" prompt="@Strings.AlertsPrompt">
+        <settingConfig type="list" readonly="true">
+			<listEntry value="0">@Strings.AlertsOff</listEntry>
+            <listEntry value="1">@Strings.AlertsOnly</listEntry>
+            <listEntry value="2">@Strings.AlertsToo</listEntry>
+		</settingConfig>
+	</setting>
+
+</settings>

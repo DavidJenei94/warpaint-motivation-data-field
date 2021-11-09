@@ -17,6 +17,7 @@ class Motivation {
     private var _secondLineWidthPercent as Number;
     private var _thirdLineWidthPercent as Number;
 
+	// 55
     private var hardcodedMotivationalQuotesBasic = [
 		"I DIDN'T COME THIS FAR TO ONLY COME THIS FAR",
 		"PAIN IS TEMPORARY, BUT GREATNESS LASTS FOREVER",
@@ -72,7 +73,10 @@ class Motivation {
 		"SUCCESS REQUIRES NO EXPLANATION",
 		"NO SHORTCUT TO SUCCESS.",
 		"OBSTACLES ARE THERE TO MAKE YOU STRONGER",
-		"SEE YOUR PROBLEMS AS CHALLENGES",
+		"SEE YOUR PROBLEMS AS CHALLENGES"
+	];
+
+	(:low_memory_standard) private var hardcodedMotivationalQuotesStandard = [
 		"THE HARDER THE TASK, THE MORE STRENGTH YOU GAIN",
 		"TAKE OWNERSHIP OF YOUR LIFE",
 		"TAKE THINGS TO THE NEXT LEVEL",
@@ -92,10 +96,64 @@ class Motivation {
 		"THE CLOCK IS TICKING. DON'T WASTE YOUR TIME",
 		"WINNERS ALWAYS GET UP",
 		"LET YOUR PAIN PUSH YOU TO GREATNESS",
-		"HOW MUCH LONGER ARE YOU GONNA WAIT?"
+		"HOW MUCH LONGER ARE YOU GONNA WAIT?",
+		"NO MORE WAITING FOR THE PERFECT MOMENT",
+		"NOW IS THE TIME TO BE STRONG",
+		"LIFE HAS NO LIMITS EXCEPT THOSE YOU CREATE",
+		"BE A VICTOR AND NOT A VICTIM!",
+		"YOU CONTROL YOUR DESTINY",
+		"AS LONG AS YOU KEEP FIGHTING, YOU WIN",
+		"EVERY DAY IS A BEGINNING",
+		"DO NOT STOP AT THE MIDDLE OF THE PROCESS",
+		"DEFY THE ODDS",
+		"YOU ALWAYS HAVE TO GIVE ALL TO BE THE BEST",
+		"LEAD YOURSELF TO VICTORY",
+		"BE OBSESSED ON WHAT YOU WANT",
+		"THE GREAT LIFE IS IN FRONT OF YOU, NOT BEHIND YOU",
+		"FIND A REASON TO KEEP GOING",
+		"MOVE FORWARD EVERY SINGLE DAY",
+		"NEVER LOSE THE FIRE IN YOUR EYES",
+		"SHOW UP EVERY DAY",
+		"TIRED OF BEING AVERAGE",
+		"CONFIDENCE IS THE KEY TO GET AHEAD IN LIFE",
+		"KEEP YOUR EYES ON THE PRIZE",
+		"DON'T LET SOME FAILURES BREAK YOU",
+		"I CAN. BECAUSE I AM CAPABLE",
+		"I WILL. BECAUSE I AM STRONG",
+		"I MUST. BECAUSE THEY ARE COUNTING ON ME",
+		"SLEEP, SWEAT, GRIND, REPEAT",
+		"FACE EVERYTHING AND RISE",
+		"IT TAKES COURAGE TO BE SUCCESSFUL",
+		"AT THE END OF PAIN IS SUCCESS",
+		"GET A REWARD FOR YOUR PAIN",
+		"IF YOU'RE READY TO QUIT, DON'T GET STARTED",
+		"WITH YOUR MINDSET YOU CHANGE YOUR WORLD",
+		"DO NOT SETTLE FOR THE EASY ROAD",
+		"BURN YOUR GOAL INTO YOUR SOUL",
+		"IT WILL TAKE TIME, BUT IT WILL BE WORTH IT",
+		"NEVER GIVE UP, GREAT THINGS TAKE TIME",
+		"DON'T CRY TO QUIT, CRY TO KEEP GOING",
+		"IT'S HARD TO BEAT THE ONE WHO DOESN'T GIVE UP",
+		"IT WILL HURT, BUT IT WILL BE WORTH IT",
+		"YOU CAN MAKE IT",
+		"STRIVE FOR GREATNESS",
+		"BELIEVE IN YOURSELF",
+		"I WILL NOT BE OUTWORKED",
+		"TAKE YOURSELF OUT OF YOUR COMFORT ZONE",
+		"WHATEVER YOU DO, ALWAYS GIVE 100%",
+		"SACRIFICE LEADS AND GAINS FOLLOW",
+		"IF YOU'RE GOING TO HAVE IT, RISE AND GRIND",
+		"WHERE THERE'S A WILL, THERE'S A WAY",
+		"DESTROY THE WEAKNESS IN YOUR HEAD",
+		"IT'S TIME TO DO WHAT REAL BEASTS DO",
+		"YOU'LL NEVER FEEL 100% READY. DO IT ANYWAY",
+		"EVERY DECISION HAS CONSEQUENCES",
+		"IF YOU DO A JOB, DO IT RIGHT",
+		"EASY IS NOT AN OPTION",
+		"MASTER THE MONOTONOUS TO ACHIEVE"
 	];
 
-	(:low_memory_motivation) private var hardcodedMotivationalQuotesExtra = [
+	(:low_memory_extra) private var hardcodedMotivationalQuotesExtra = [
 	];
 
     //! Constructor
@@ -111,7 +169,6 @@ class Motivation {
 	public function setMotivationalQuote(dc as Dc) as String {
 
 		var isMotivationSet = false;
-		// var counter = 0;
 
 		var motivationFirstPart as String;
 		var motivationSecondPart as String;
@@ -190,11 +247,7 @@ class Motivation {
 				isMotivationSet = false;
 			}
 
-			// if (!isMotivationSet) {
-			// 	System.println("Failed motivation: " + motivationFirstPart + " " + motivationSecondPart + " " + motivationThirdPart);
-			// }
-			// counter++;
-		} while (!isMotivationSet); //while (counter < 50);
+		} while (!isMotivationSet);
 
 		if (motivationSecondPart.equals("")) {
 			return motivationFirstPart;
@@ -209,13 +262,20 @@ class Motivation {
 	//! Get a random motivational quote 
 	//! @return a random quote from the list hard coded
 	private function getRandomHardcodedMotivationalQuote() as String {
-		if (lowMemory) {
+		if (lowMemory == QUOTES_BASIC) {
 			var randomIndex = Math.rand() % hardcodedMotivationalQuotesBasic.size();
 			return hardcodedMotivationalQuotesBasic[randomIndex];
-		} else {
-			var randomIndex = Math.rand() % (hardcodedMotivationalQuotesBasic.size() + hardcodedMotivationalQuotesExtra.size());
+		} else if (lowMemory == QUOTES_STANDARD) {
+			var randomIndex = Math.rand() % (hardcodedMotivationalQuotesBasic.size() + hardcodedMotivationalQuotesStandard.size());
 			var hardcodedMotivationalQuotesAll = [];
 			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesBasic);
+			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesStandard);
+			return hardcodedMotivationalQuotesAll[randomIndex];
+		} else {
+			var randomIndex = Math.rand() % (hardcodedMotivationalQuotesBasic.size() + hardcodedMotivationalQuotesStandard.size() + hardcodedMotivationalQuotesExtra.size());
+			var hardcodedMotivationalQuotesAll = [];
+			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesBasic);
+			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesStandard);
 			hardcodedMotivationalQuotesAll.addAll(hardcodedMotivationalQuotesExtra);
 			return hardcodedMotivationalQuotesAll[randomIndex];
 		}

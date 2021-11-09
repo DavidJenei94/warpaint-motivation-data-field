@@ -3,32 +3,139 @@ project.manifest = manifest.xml
 # Exclude other source directories (default behaviour is to include).
 base.sourcePath = source
 
-# Low memory devices exclude some hardcoded motivational quotes to save memory on devices CIQ 1.x
-d2bravo.excludeAnnotations = $(d2bravo.excludeAnnotations);low_memory_motivation
-d2bravo_titanium.excludeAnnotations = $(d2bravo_titanium.excludeAnnotations);low_memory_motivation
-fenix3.excludeAnnotations = $(fenix3.excludeAnnotations);low_memory_motivation
-fenix3_hr.excludeAnnotations = $(fenix3_hr.excludeAnnotations);low_memory_motivation
-fr230.excludeAnnotations = $(fr230.excludeAnnotations);low_memory_motivation
-fr235.excludeAnnotations = $(fr235.excludeAnnotations);low_memory_motivation
-fr630.excludeAnnotations = $(fr630.excludeAnnotations);low_memory_motivation
-fr920xt.excludeAnnotations = $(fr920xt.excludeAnnotations);low_memory_motivation
-vivoactive.excludeAnnotations = $(vivoactive.excludeAnnotations);low_memory_motivation
-# Some other device with low memory
-fr735xt.excludeAnnotations = $(fr735xt.excludeAnnotations);low_memory_motivation
-vivoactive_hr.excludeAnnotations = $(vivoactive_hr.excludeAnnotations);low_memory_motivation
+
+# Not supported devices:
+# epix
+# fr45
+# garminswim2
+# vivolife
+
+
+# Low memory devices exclude standard and extra hardcoded motivational quotes to save memory on devices CIQ 1.x
+d2bravo.excludeAnnotations = $(d2bravo.excludeAnnotations);low_memory_standard;low_memory_extra
+d2bravo_titanium.excludeAnnotations = $(d2bravo_titanium.excludeAnnotations);low_memory_standard;low_memory_extra
+fenix3.excludeAnnotations = $(fenix3.excludeAnnotations);low_memory_standard;low_memory_extra
+fenix3_hr.excludeAnnotations = $(fenix3_hr.excludeAnnotations);low_memory_standard;low_memory_extra
+fr230.excludeAnnotations = $(fr230.excludeAnnotations);low_memory_standard;low_memory_extra
+fr235.excludeAnnotations = $(fr235.excludeAnnotations);low_memory_standard;low_memory_extra
+fr630.excludeAnnotations = $(fr630.excludeAnnotations);low_memory_standard;low_memory_extra
+fr920xt.excludeAnnotations = $(fr920xt.excludeAnnotations);low_memory_standard;low_memory_extra
+vivoactive.excludeAnnotations = $(vivoactive.excludeAnnotations);low_memory_standard;low_memory_extra
+
+# Devices with 28.6 kB memory to exclude extra quotes
+approachs60.excludeAnnotations = $(approachs60.excludeAnnotations);low_memory_extra
+d2air.excludeAnnotations = $(d2air.excludeAnnotations);low_memory_extra
+descentmk1.excludeAnnotations = $(descentmk1.excludeAnnotations);low_memory_extra
+enduro.excludeAnnotations = $(enduro.excludeAnnotations);low_memory_extra
+fenix5.excludeAnnotations = $(fenix5.excludeAnnotations);low_memory_extra
+fenix5s.excludeAnnotations = $(fenix5s.excludeAnnotations);low_memory_extra
+fenix6s.excludeAnnotations = $(fenix6s.excludeAnnotations);low_memory_extra
+fenixchronos.excludeAnnotations = $(fenixchronos.excludeAnnotations);low_memory_extra
+fr245.excludeAnnotations = $(fr245.excludeAnnotations);low_memory_extra
+fr55.excludeAnnotations = $(fr55.excludeAnnotations);low_memory_extra
+fr645.excludeAnnotations = $(fr645.excludeAnnotations);low_memory_extra
+fr735xt.excludeAnnotations = $(fr735xt.excludeAnnotations);low_memory_extra
+fr935.excludeAnnotations = $(fr935.excludeAnnotations);low_memory_extra
+legacyherocaptainmarvel.excludeAnnotations = $(legacyherocaptainmarvel.excludeAnnotations);low_memory_extra
+legacyherofirstavenger.excludeAnnotations = $(legacyherofirstavenger.excludeAnnotations);low_memory_extra
+legacysagadarthvader.excludeAnnotations = $(legacysagadarthvader.excludeAnnotations);low_memory_extra
+legacysagarey.excludeAnnotations = $(legacysagarey.excludeAnnotations);low_memory_extra
+venu.excludeAnnotations = $(venu.excludeAnnotations);low_memory_extra
+venud.excludeAnnotations = $(venud.excludeAnnotations);low_memory_extra
+venusq.excludeAnnotations = $(venusq.excludeAnnotations);low_memory_extra
+venusqm.excludeAnnotations = $(venusqm.excludeAnnotations);low_memory_extra
+vivoactive3.excludeAnnotations = $(vivoactive3.excludeAnnotations);low_memory_extra
+vivoactive3d.excludeAnnotations = $(vivoactive3d.excludeAnnotations);low_memory_extra
+vivoactive3m.excludeAnnotations = $(vivoactive3m.excludeAnnotations);low_memory_extra
+vivoactive3mlte.excludeAnnotations = $(vivoactive3mlte.excludeAnnotations);low_memory_extra
+vivoactive4.excludeAnnotations = $(vivoactive4.excludeAnnotations);low_memory_extra
+vivoactive4s.excludeAnnotations = $(vivoactive4s.excludeAnnotations);low_memory_extra
+vivoactive_hr.excludeAnnotations = $(vivoactive_hr.excludeAnnotations);low_memory_extra
+edge130.excludeAnnotations = $(edge130.excludeAnnotations);low_memory_extra
+edge130plus.excludeAnnotations = $(edge130plus.excludeAnnotations);low_memory_extra
+edge_520.excludeAnnotations = $(edge_520.excludeAnnotations);low_memory_extra
 
 # Low memory devices exclude some hardcoded motivational quotes to save memory on devices CIQ 1.x
-# Low memory devices exclude some hardcoded motivational quotes to save memory (mainly 1.4.0 round watches because they have sunrise sunset)
-d2bravo.resourcePath = $(d2bravo.resourcePath);resources-low_memory
-d2bravo_titanium.resourcePath = $(d2bravo_titanium.resourcePath);resources-low_memory
-fenix3.resourcePath = $(fenix3.resourcePath);resources-low_memory
-fenix3_hr.resourcePath = $(fenix3_hr.resourcePath);resources-low_memory
-fr230.resourcePath = $(fr230.resourcePath);resources-low_memory
-fr235.resourcePath = $(fr235.resourcePath);resources-low_memory
-fr630.resourcePath = $(fr630.resourcePath);resources-low_memory
-fr920xt.resourcePath = $(fr920xt.resourcePath);resources-low_memory
-vivoactive.resourcePath = $(vivoactive.resourcePath);resources-low_memory
+d2bravo.resourcePath = $(d2bravo.resourcePath);resources-low_memory_basic
+d2bravo_titanium.resourcePath = $(d2bravo_titanium.resourcePath);resources-low_memory_basic
+fenix3.resourcePath = $(fenix3.resourcePath);resources-low_memory_basic
+fenix3_hr.resourcePath = $(fenix3_hr.resourcePath);resources-low_memory_basic
+fr230.resourcePath = $(fr230.resourcePath);resources-low_memory_basic
+fr235.resourcePath = $(fr235.resourcePath);resources-low_memory_basic
+fr630.resourcePath = $(fr630.resourcePath);resources-low_memory_basic
+fr920xt.resourcePath = $(fr920xt.resourcePath);resources-low_memory_basic
+vivoactive.resourcePath = $(vivoactive.resourcePath);resources-low_memory_basic
 
-# Some other device with low memory
-fr735xt.resourcePath = $(fr735xt.resourcePath);resources-low_memory
-vivoactive_hr.resourcePath = $(vivoactive_hr.resourcePath);resources-low_memory
+# Devices with 28.6 kB memory to exclude extra quotes
+approachs60.resourcePath = $(approachs60.resourcePath);resources-low_memory_standard
+d2air.resourcePath = $(d2air.resourcePath);resources-low_memory_standard
+descentmk1.resourcePath = $(descentmk1.resourcePath);resources-low_memory_standard
+enduro.resourcePath = $(enduro.resourcePath);resources-low_memory_standard
+fenix5.resourcePath = $(fenix5.resourcePath);resources-low_memory_standard
+fenix5s.resourcePath = $(fenix5s.resourcePath);resources-low_memory_standard
+fenix6s.resourcePath = $(fenix6s.resourcePath);resources-low_memory_standard
+fenixchronos.resourcePath = $(fenixchronos.resourcePath);resources-low_memory_standard
+fr245.resourcePath = $(fr245.resourcePath);resources-low_memory_standard
+fr55.resourcePath = $(fr55.resourcePath);resources-low_memory_standard
+fr645.resourcePath = $(fr645.resourcePath);resources-low_memory_standard
+fr735xt.resourcePath = $(fr735xt.resourcePath);resources-low_memory_standard
+fr935.resourcePath = $(fr935.resourcePath);resources-low_memory_standard
+legacyherocaptainmarvel.resourcePath = $(legacyherocaptainmarvel.resourcePath);resources-low_memory_standard
+legacyherofirstavenger.resourcePath = $(legacyherofirstavenger.resourcePath);resources-low_memory_standard
+legacysagadarthvader.resourcePath = $(legacysagadarthvader.resourcePath);resources-low_memory_standard
+legacysagarey.resourcePath = $(legacysagarey.resourcePath);resources-low_memory_standard
+venu.resourcePath = $(venu.resourcePath);resources-low_memory_standard
+venud.resourcePath = $(venud.resourcePath);resources-low_memory_standard
+venusq.resourcePath = $(venusq.resourcePath);resources-low_memory_standard
+venusqm.resourcePath = $(venusqm.resourcePath);resources-low_memory_standard
+vivoactive3.resourcePath = $(vivoactive3.resourcePath);resources-low_memory_standard
+vivoactive3d.resourcePath = $(vivoactive3d.resourcePath);resources-low_memory_standard
+vivoactive3m.resourcePath = $(vivoactive3m.resourcePath);resources-low_memory_standard
+vivoactive3mlte.resourcePath = $(vivoactive3mlte.resourcePath);resources-low_memory_standard
+vivoactive4.resourcePath = $(vivoactive4.resourcePath);resources-low_memory_standard
+vivoactive4s.resourcePath = $(vivoactive4s.resourcePath);resources-low_memory_standard
+vivoactive_hr.resourcePath = $(vivoactive_hr.resourcePath);resources-low_memory_standard
+edge130.resourcePath = $(edge130.resourcePath);resources-low_memory_standard
+edge130plus.resourcePath = $(edge130plus.resourcePath);resources-low_memory_standard
+edge_520.resourcePath = $(edge_520.resourcePath);resources-low_memory_standard
+
+
+# Devices below 3.2 does not have alerts, exclide them from settings
+approachs60.resourcePath = $(approachs60.resourcePath);resources-no_alerts
+approachs62.resourcePath = $(approachs62.resourcePath);resources-no_alerts
+d2bravo.resourcePath = $(d2bravo.resourcePath);resources-no_alerts
+d2bravo_titanium.resourcePath = $(d2bravo_titanium.resourcePath);resources-no_alerts
+d2charlie.resourcePath = $(d2charlie.resourcePath);resources-no_alerts
+d2delta.resourcePath = $(d2delta.resourcePath);resources-no_alerts
+d2deltapx.resourcePath = $(d2deltapx.resourcePath);resources-no_alerts
+d2deltas.resourcePath = $(d2deltas.resourcePath);resources-no_alerts
+descentmk1.resourcePath = $(descentmk1.resourcePath);resources-no_alerts
+fenix3.resourcePath = $(fenix3.resourcePath);resources-no_alerts
+fenix3_hr.resourcePath = $(fenix3_hr.resourcePath);resources-no_alerts
+fenix5.resourcePath = $(fenix5.resourcePath);resources-no_alerts
+fenix5s.resourcePath = $(fenix5s.resourcePath);resources-no_alerts
+fenix5x.resourcePath = $(fenix5x.resourcePath);resources-no_alerts
+fenixchronos.resourcePath = $(fenixchronos.resourcePath);resources-no_alerts
+fr230.resourcePath = $(fr230.resourcePath);resources-no_alerts
+fr235.resourcePath = $(fr235.resourcePath);resources-no_alerts
+fr630.resourcePath = $(fr630.resourcePath);resources-no_alerts
+fr645.resourcePath = $(fr645.resourcePath);resources-no_alerts
+fr735xt.resourcePath = $(fr735xt.resourcePath);resources-no_alerts
+fr920xt.resourcePath = $(fr920xt.resourcePath);resources-no_alerts
+fr935.resourcePath = $(fr935.resourcePath);resources-no_alerts
+vivoactive.resourcePath = $(vivoactive.resourcePath);resources-no_alerts
+vivoactive3.resourcePath = $(vivoactive3.resourcePath);resources-no_alerts
+vivoactive3d.resourcePath = $(vivoactive3d.resourcePath);resources-no_alerts
+vivoactive3mlte.resourcePath = $(vivoactive3mlte.resourcePath);resources-no_alerts
+vivoactive_hr.resourcePath = $(vivoactive_hr.resourcePath);resources-no_alerts
+edge_1000.resourcePath = $(edge_1000.resourcePath);resources-no_alerts
+edge130.resourcePath = $(edge130.resourcePath);resources-no_alerts
+edge_520.resourcePath = $(edge_520.resourcePath);resources-no_alerts
+edge520plus.resourcePath = $(edge520plus.resourcePath);resources-no_alerts
+edge820.resourcePath = $(edge820.resourcePath);resources-no_alerts
+edgeexplore.resourcePath = $(edgeexplore.resourcePath);resources-no_alerts
+gpsmap66.resourcePath = $(gpsmap66.resourcePath);resources-no_alerts
+gpsmap86.resourcePath = $(gpsmap86.resourcePath);resources-no_alerts
+montana7xx.resourcePath = $(montana7xx.resourcePath);resources-no_alerts
+oregon7xx.resourcePath = $(oregon7xx.resourcePath);resources-no_alerts
+rino7xx.resourcePath = $(rino7xx.resourcePath);resources-no_alerts
