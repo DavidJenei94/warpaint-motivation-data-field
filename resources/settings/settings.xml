@@ -5,6 +5,7 @@
 
 	<setting propertyKey="@Properties.MotivationalQuoteChangeInterval" title="@Strings.MotivationalQuoteChangeIntervalTitle">
         <settingConfig type="list">
+            <listEntry value="2">@Strings.Sec2</listEntry>
             <listEntry value="300">@Strings.Min5</listEntry>
             <listEntry value="600">@Strings.Min10</listEntry>
             <listEntry value="900">@Strings.Min15</listEntry>
