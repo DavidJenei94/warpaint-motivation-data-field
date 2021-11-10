@@ -137,7 +137,6 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
     //! @param timerTime the activity time in ms
     private function checkMotivationalQuoteRefresh(timerTime as Number) as Void {
         var currentSeconds = (timerTime * MILLISECONDS_TO_SECONDS).toNumber(); // current seconds passed in activity
-        System.println("currentSeconds: " + currentSeconds);
         if (timerTime > 0 && // provide to not change in the first second
             currentSeconds % motivationalQuoteChangeInterval == 1 && //change interval
             _lastCheckSeconds != currentSeconds) { // the activity is on
