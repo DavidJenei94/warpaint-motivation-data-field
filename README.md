@@ -32,6 +32,8 @@ Motivational, Inspirational, Data, Information, Stylish, Original, Creative, Cus
 
 ## What's New
 
+### 1.0.1
+- Fix settings issue.
 ### 1.0.0
 - Public release.
 
