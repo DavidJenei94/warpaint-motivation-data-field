@@ -62,7 +62,7 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         // Top right quadrant so we'll use the top right layout
         } else if (obscurityFlags == (OBSCURE_TOP | OBSCURE_RIGHT)) {
             _textPositionX = width * 0.40;
-            _textPositionY = height * 0.66;
+            _textPositionY = height * 0.60;
 
         // Bottom left quadrant so we'll use the bottom left layout
         } else if (obscurityFlags == (OBSCURE_BOTTOM | OBSCURE_LEFT)) {
