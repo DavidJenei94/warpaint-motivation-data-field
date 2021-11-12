@@ -15,7 +15,9 @@ In case of any issues/questions feel free to send me a message via 'Contact Deve
 - On newer devices which CIQ level is 3.2.0 or above, you can set to show the motivational quote as an alert at the change interval.
 
 ### Notes/FAQ:
+- Motivational quotes does not always fit smaller fields, it is recommended to use the larger ones (See display pictures).
 - There are currently 130+ motivational quotes, however some devices which CIQ level is 1.4.x or below, the motivational quote is selected from a smaller pool (55) due to memory limitations. These devices: d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr630, fr920xt, vivoactive.
+- Warpaint Motivation Data Field does not collect or forward any data.
 
 ### Credits
 Thanks for the garmin developer community and the help they provided me on the forums and in the official documentations.
@@ -30,8 +32,13 @@ Motivational, Inspirational, Data, Information, Stylish, Original, Creative, Cus
 
 ## What's New
 
+### 1.0.2
+- Fix technical issue.
+### 1.0.1
+- Fix settings issue.
 ### 1.0.0
 - Public release.
 
 ## Permissions
 This app requires access to:
+- Send you on-device alerts
