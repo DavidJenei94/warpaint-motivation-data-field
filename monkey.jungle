@@ -100,7 +100,7 @@ edge130plus.resourcePath = $(edge130plus.resourcePath);resources-low_memory_stan
 edge_520.resourcePath = $(edge_520.resourcePath);resources-low_memory_standard
 
 
-# Devices below 3.2 does not have alerts, exclide them from settings
+# Devices below 3.2 does not have alerts, exclude them from settings
 approachs60.resourcePath = $(approachs60.resourcePath);resources-no_alerts
 approachs62.resourcePath = $(approachs62.resourcePath);resources-no_alerts
 d2bravo.resourcePath = $(d2bravo.resourcePath);resources-no_alerts

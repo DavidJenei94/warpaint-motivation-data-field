@@ -32,6 +32,10 @@ Motivational, Inspirational, Data, Information, Stylish, Original, Creative, Cus
 
 ## What's New
 
+### 1.1.0
+- Quote splitting optimization
+- Add new motivational quotes
+- Fix issue: property without settings
 ### 1.0.2
 - Fix technical issue.
 ### 1.0.1

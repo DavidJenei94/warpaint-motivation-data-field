@@ -23,4 +23,9 @@
             <listEntry value="2">@Strings.AlertsToo</listEntry>
 		</settingConfig>
 	</setting>
+
+	<setting propertyKey="@Properties.LowMemoryForMotivationalQuotes" title="@Strings.LowMemoryForMotivationalQuotesTitle">
+        <settingConfig type="numeric" readonly="true" />
+    </setting>
+
 </settings>
