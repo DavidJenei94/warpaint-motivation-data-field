@@ -94,20 +94,20 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         var fontBase = 0; // X_TINY
 
         if  (deviceSettings.screenShape == System.SCREEN_SHAPE_RECTANGLE) {
-            lineWidths = [0.90, 0.90, 0.90];
+            lineWidths = [0.92, 0.92, 0.92];
             if (dfPanelHeight < screenHeight / 3) {
-                fontBase = Graphics.FONT_SMALL;
+                fontBase = Graphics.FONT_MEDIUM;
             } else {
                 fontBase = Graphics.FONT_LARGE;
             }
         } else if (dfPanelHeight > screenHeight / 2) {
-            lineWidths = [0.80, 0.90, 0.80];
+            lineWidths = [0.85, 0.95, 0.85];
             fontBase = Graphics.FONT_LARGE;
         } else if (dfPanelHeight <= screenHeight / 2 && dfPanelHeight >= screenHeight / 3) {
-            lineWidths = [0.60, 0.70, 0.60];
+            lineWidths = [0.65, 0.75, 0.65];
             fontBase = Graphics.FONT_SMALL;
         } else {
-            lineWidths = [0.80, 0.90, 0.80];
+            lineWidths = [0.85, 0.95, 0.85];
             fontBase = Graphics.FONT_XTINY;
         }
 
