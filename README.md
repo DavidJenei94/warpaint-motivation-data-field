@@ -16,7 +16,7 @@ In case of any issues/questions feel free to send me a message via 'Contact Deve
 
 ### Notes/FAQ:
 - Motivational quotes does not always fit smaller fields, it is recommended to use the larger ones (See display pictures).
-- There are currently 130+ motivational quotes, however some devices which CIQ level is 1.4.x or below, the motivational quote is selected from a smaller pool (55) due to memory limitations. These devices: d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr630, fr920xt, vivoactive.
+- There are currently 140+ motivational quotes, however some devices which CIQ level is 1.4.x or below, the motivational quote is selected from a smaller pool (55) due to memory limitations. These devices: d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr630, fr920xt, vivoactive.
 - Warpaint Motivation Data Field does not collect or forward any data.
 
 ### Credits
