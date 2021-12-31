@@ -318,7 +318,7 @@ class Motivation {
 		// _fontBase 4->0, FONT_LARGE->FONT_XTINY
 		for (var iFont = _fontBase; iFont >= 0; iFont--){
 			motivationLengthInPixels = dc.getTextWidthInPixels(motivation, iFont);
-			maxTextLength = 0.75 * (screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent);
+			maxTextLength = 0.85 * (screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent);
 			if (motivationLengthInPixels < maxTextLength) {
 				font = iFont;
 				return;
