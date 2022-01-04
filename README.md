@@ -32,6 +32,8 @@ Motivational, Inspirational, Data, Information, Stylish, Original, Creative, Cus
 
 ## What's New
 
+### 1.1.1
+- Add Venu 2 Plus support
 ### 1.1.0
 - Quote splitting optimization
 - Add new motivational quotes
