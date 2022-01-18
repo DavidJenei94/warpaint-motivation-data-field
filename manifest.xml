@@ -41,6 +41,7 @@
             <iq:product id="edge1030plus"/>
             <iq:product id="edgeexplore"/>
             <iq:product id="enduro"/>
+            <iq:product id="epix2"/>
             <iq:product id="fenix3"/>
             <iq:product id="fenix3_hr"/>
             <iq:product id="fenix5"/>
@@ -54,6 +55,9 @@
             <iq:product id="fenix6s"/>
             <iq:product id="fenix6spro"/>
             <iq:product id="fenix6xpro"/>
+            <iq:product id="fenix7"/>
+            <iq:product id="fenix7s"/>
+            <iq:product id="fenix7x"/>
             <iq:product id="fenixchronos"/>
             <iq:product id="legacyherofirstavenger"/>
             <iq:product id="fr55"/>
