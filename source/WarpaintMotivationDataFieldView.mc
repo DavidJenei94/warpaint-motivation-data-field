@@ -24,7 +24,7 @@ class WarpaintMotivationDataFieldAlert extends WatchUi.DataFieldAlert {
         dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2, Graphics.FONT_SMALL, _motivationString, (Graphics.TEXT_JUSTIFY_CENTER | Graphics.TEXT_JUSTIFY_VCENTER));
 
         if (Attention has :vibrate) {
-            var vibeData = [new Attention.VibeProfile(25, 1000)];
+            var vibeData = [new Attention.VibeProfile(50, 2000)];
             Attention.vibrate(vibeData);
         }
     }
