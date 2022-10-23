@@ -54,6 +54,9 @@ vivoactive_hr.excludeAnnotations = $(vivoactive_hr.excludeAnnotations);low_memor
 edge130.excludeAnnotations = $(edge130.excludeAnnotations);low_memory_extra
 edge130plus.excludeAnnotations = $(edge130plus.excludeAnnotations);low_memory_extra
 edge_520.excludeAnnotations = $(edge_520.excludeAnnotations);low_memory_extra
+instinct2.excludeAnnotations = $(instinct2.excludeAnnotations);low_memory_extra
+instinct2s.excludeAnnotations = $(instinct2s.excludeAnnotations);low_memory_extra
+descentg1.excludeAnnotations = $(descentg1.excludeAnnotations);low_memory_extra
 
 # Low memory devices exclude some hardcoded motivational quotes to save memory on devices CIQ 1.x
 d2bravo.resourcePath = $(d2bravo.resourcePath);resources-low_memory_basic
@@ -98,6 +101,9 @@ vivoactive_hr.resourcePath = $(vivoactive_hr.resourcePath);resources-low_memory_
 edge130.resourcePath = $(edge130.resourcePath);resources-low_memory_standard
 edge130plus.resourcePath = $(edge130plus.resourcePath);resources-low_memory_standard
 edge_520.resourcePath = $(edge_520.resourcePath);resources-low_memory_standard
+instinct2.resourcePath = $(instinct2.resourcePath);resources-low_memory_standard
+instinct2s.resourcePath = $(instinct2s.resourcePath);resources-low_memory_standard
+descentg1.resourcePath = $(descentg1.resourcePath);resources-low_memory_standard
 
 
 # Devices below 3.2 does not have alerts, exclude them from settings

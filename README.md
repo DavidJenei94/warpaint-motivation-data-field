@@ -32,6 +32,8 @@ Motivational, Inspirational, Data, Information, Stylish, Original, Creative, Cus
 
 ## What's New
 
+### 1.1.3
+- Add D2™ Air X10, D2™ Mach 1, Forerunner® 255, Forerunner® 255 Music, Forerunner® 255s, Forerunner® 255s Music, Forerunner® 955 / Solar, Venu® Sq 2, Venu® Sq 2 Music, Edge® 1040, Edge® Explore 2 support
 ### 1.1.2
 - Add Fenix 7, Fenix 7S, Fenix 7X and Epix™ (Gen 2) support
 ### 1.1.1
