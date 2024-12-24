@@ -5,7 +5,7 @@ import Toybox.WatchUi;
 import Toybox.Attention;
 
 // Global variable
-var _motivationString as String;
+var _motivationString as String = "";
 
 class WarpaintMotivationDataFieldAlert extends WatchUi.DataFieldAlert {
 
@@ -35,8 +35,8 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
 
     private const MILLISECONDS_TO_SECONDS = 0.001;
 
-    private var _textPositionX as Number;
-    private var _textPositionY as Number;
+    private var _textPositionX as Float = 0.0;
+    private var _textPositionY as Float = 0.0;
 
     private var _motivation as Motivation;
     private var _isMotviationalQuoteSet as Boolean;
@@ -89,15 +89,15 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         selectFont(width, height);
     }
 
-    //! Select font for quote according to panel size
+    //! Select font for quote according to panel size - fontBase an lineWidths are set
     //! @param dfPanelWidth The width of the current dc panel
     //! @param dfPanelHeight The height of the current dc panel
     private function selectFont(dfPanelWidth as Integer, dfPanelHeight as Integer) {
         var deviceSettings = System.getDeviceSettings();
         var screenWidth = deviceSettings.screenWidth;
         var screenHeight = deviceSettings.screenHeight;
-        var lineWidths = new Number[3];
-        var fontBase = 0; // X_TINY
+        var lineWidths = new Float[3];
+        var fontBase = Graphics.FONT_XTINY;
 
         if  (deviceSettings.screenShape == System.SCREEN_SHAPE_RECTANGLE) {
             lineWidths = [0.92, 0.92, 0.92];
@@ -167,7 +167,7 @@ class WarpaintMotivationDataFieldView extends WatchUi.DataField {
         if (!_isMotviationalQuoteSet) {
             if (!_startedActivity || displayAlerts == DISPLAY_ALERT_ONLY) {
                 _motivationString = "WARPAINT\nMOTIVATION";
-                _motivation.setFont(Graphics.FONT_SMALL);
+                _motivation.font = Graphics.FONT_SMALL;
             } else {
                 _motivationString = _motivation.setMotivationalQuote(dc);
             }

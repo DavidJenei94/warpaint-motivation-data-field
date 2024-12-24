@@ -16,7 +16,7 @@ In case of any issues/questions feel free to send me a message via 'Contact Deve
 
 ### Notes/FAQ:
 - Motivational quotes does not always fit smaller fields, it is recommended to use the larger ones (See display pictures).
-- There are currently 140+ motivational quotes, however some devices which CIQ level is 1.4.x or below, the motivational quote is selected from a smaller pool (55) due to memory limitations. These devices: d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr630, fr920xt, vivoactive.
+- There are currently 160+ motivational quotes, however some devices which CIQ level is 1.4.x or below, the motivational quote is selected from a smaller pool (55) due to memory limitations. These devices: d2bravo, d2bravo_titanium, fenix3, fenix3_hr, fr230, fr235, fr630, fr920xt, vivoactive.
 - Warpaint Motivation Data Field does not collect or forward any data.
 
 ### Credits
@@ -32,6 +32,9 @@ Motivational, Inspirational, Data, Information, Stylish, Original, Creative, Cus
 
 ## What's New
 
+### 2.0.0
+- Update to new Connect SDK
+- Add Approach® S70 42mm, Approach® S70 47mm, Descent™ Mk3 43mm / Mk3i 43mm, Descent™ Mk3i 51mm, epix™ Pro (Gen 2) 42mm, epix™ Pro (Gen 2) 47mm / quatix® 7 Pro, epix™ Pro (Gen 2) 51mm / D2™ Mach 1 Pro / tactix® 7 – AMOLED Edition, fēnix® 7 Pro, fēnix® 7 Pro - Solar Edition (no Wi-Fi), fēnix® 7S Pro, fēnix® 7X Pro, fēnix® 7X Pro - Solar Edition (no Wi-Fi), Forerunner® 165, Forerunner® 165 Music, Forerunner® 265, Forerunner® 265s, Forerunner® 965, Instinct® 2X Solar, Instinct® Crossover, MARQ® (Gen 2) Athlete / Adventurer / Captain / Golfer / Carbon Edition / Commander - Carbon Edition, MARQ® (Gen 2) Aviator, Venu® 3, Venu® 3S, vívoactive® 5, Enduro™ 3, fēnix® 8 43mm, fēnix® 8 47mm / 51mm, fēnix® 8 Solar 47mm, fēnix® 8 Solar 51mm, fēnix® E, Edge® 540 / 540 Solar, Edge® 840 / 840 Solar, Edge® 1050, GPSMAP® 67 / 67i support
 ### 1.1.4
 - Optimize alert vibration
 ### 1.1.3

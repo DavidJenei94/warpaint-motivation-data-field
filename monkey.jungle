@@ -2,6 +2,11 @@ project.manifest = manifest.xml
 
 # Exclude other source directories (default behaviour is to include).
 base.sourcePath = source
+# empty_ symbols are for same name arrays which are empty - these are excluedd by default
+# For each device it is overriden for which is excluded
+# Eg. Vivoactive4s should exclude only low_memory_extra
+# Which means that it will include low_memory_standard, so the empty_low_memory_standard should be excluded as well
+base.excludeAnnotations = empty_low_memory_extra;empty_low_memory_standard
 
 
 # Not supported devices:
@@ -12,51 +17,53 @@ base.sourcePath = source
 
 
 # Low memory devices exclude standard and extra hardcoded motivational quotes to save memory on devices CIQ 1.x
-d2bravo.excludeAnnotations = $(d2bravo.excludeAnnotations);low_memory_standard;low_memory_extra
-d2bravo_titanium.excludeAnnotations = $(d2bravo_titanium.excludeAnnotations);low_memory_standard;low_memory_extra
-fenix3.excludeAnnotations = $(fenix3.excludeAnnotations);low_memory_standard;low_memory_extra
-fenix3_hr.excludeAnnotations = $(fenix3_hr.excludeAnnotations);low_memory_standard;low_memory_extra
-fr230.excludeAnnotations = $(fr230.excludeAnnotations);low_memory_standard;low_memory_extra
-fr235.excludeAnnotations = $(fr235.excludeAnnotations);low_memory_standard;low_memory_extra
-fr630.excludeAnnotations = $(fr630.excludeAnnotations);low_memory_standard;low_memory_extra
-fr920xt.excludeAnnotations = $(fr920xt.excludeAnnotations);low_memory_standard;low_memory_extra
-vivoactive.excludeAnnotations = $(vivoactive.excludeAnnotations);low_memory_standard;low_memory_extra
+d2bravo.excludeAnnotations = low_memory_standard;low_memory_extra
+d2bravo_titanium.excludeAnnotations = low_memory_standard;low_memory_extra
+fenix3.excludeAnnotations = low_memory_standard;low_memory_extra
+fenix3_hr.excludeAnnotations = low_memory_standard;low_memory_extra
+fr230.excludeAnnotations = low_memory_standard;low_memory_extra
+fr235.excludeAnnotations = low_memory_standard;low_memory_extra
+fr630.excludeAnnotations = low_memory_standard;low_memory_extra
+fr920xt.excludeAnnotations = low_memory_standard;low_memory_extra
+vivoactive.excludeAnnotations = low_memory_standard;low_memory_extra
 
 # Devices with 28.6 kB memory to exclude extra quotes
-approachs60.excludeAnnotations = $(approachs60.excludeAnnotations);low_memory_extra
-d2air.excludeAnnotations = $(d2air.excludeAnnotations);low_memory_extra
-descentmk1.excludeAnnotations = $(descentmk1.excludeAnnotations);low_memory_extra
-enduro.excludeAnnotations = $(enduro.excludeAnnotations);low_memory_extra
-fenix5.excludeAnnotations = $(fenix5.excludeAnnotations);low_memory_extra
-fenix5s.excludeAnnotations = $(fenix5s.excludeAnnotations);low_memory_extra
-fenix6s.excludeAnnotations = $(fenix6s.excludeAnnotations);low_memory_extra
-fenixchronos.excludeAnnotations = $(fenixchronos.excludeAnnotations);low_memory_extra
-fr245.excludeAnnotations = $(fr245.excludeAnnotations);low_memory_extra
-fr55.excludeAnnotations = $(fr55.excludeAnnotations);low_memory_extra
-fr645.excludeAnnotations = $(fr645.excludeAnnotations);low_memory_extra
-fr735xt.excludeAnnotations = $(fr735xt.excludeAnnotations);low_memory_extra
-fr935.excludeAnnotations = $(fr935.excludeAnnotations);low_memory_extra
-legacyherocaptainmarvel.excludeAnnotations = $(legacyherocaptainmarvel.excludeAnnotations);low_memory_extra
-legacyherofirstavenger.excludeAnnotations = $(legacyherofirstavenger.excludeAnnotations);low_memory_extra
-legacysagadarthvader.excludeAnnotations = $(legacysagadarthvader.excludeAnnotations);low_memory_extra
-legacysagarey.excludeAnnotations = $(legacysagarey.excludeAnnotations);low_memory_extra
-venu.excludeAnnotations = $(venu.excludeAnnotations);low_memory_extra
-venud.excludeAnnotations = $(venud.excludeAnnotations);low_memory_extra
-venusq.excludeAnnotations = $(venusq.excludeAnnotations);low_memory_extra
-venusqm.excludeAnnotations = $(venusqm.excludeAnnotations);low_memory_extra
-vivoactive3.excludeAnnotations = $(vivoactive3.excludeAnnotations);low_memory_extra
-vivoactive3d.excludeAnnotations = $(vivoactive3d.excludeAnnotations);low_memory_extra
-vivoactive3m.excludeAnnotations = $(vivoactive3m.excludeAnnotations);low_memory_extra
-vivoactive3mlte.excludeAnnotations = $(vivoactive3mlte.excludeAnnotations);low_memory_extra
-vivoactive4.excludeAnnotations = $(vivoactive4.excludeAnnotations);low_memory_extra
-vivoactive4s.excludeAnnotations = $(vivoactive4s.excludeAnnotations);low_memory_extra
-vivoactive_hr.excludeAnnotations = $(vivoactive_hr.excludeAnnotations);low_memory_extra
-edge130.excludeAnnotations = $(edge130.excludeAnnotations);low_memory_extra
-edge130plus.excludeAnnotations = $(edge130plus.excludeAnnotations);low_memory_extra
-edge_520.excludeAnnotations = $(edge_520.excludeAnnotations);low_memory_extra
-instinct2.excludeAnnotations = $(instinct2.excludeAnnotations);low_memory_extra
-instinct2s.excludeAnnotations = $(instinct2s.excludeAnnotations);low_memory_extra
-descentg1.excludeAnnotations = $(descentg1.excludeAnnotations);low_memory_extra
+approachs60.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+d2air.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+descentmk1.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+enduro.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fenix5.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fenix5s.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fenix6s.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fenixchronos.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fr245.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fr55.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fr645.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fr735xt.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+fr935.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+legacyherocaptainmarvel.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+legacyherofirstavenger.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+legacysagadarthvader.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+legacysagarey.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+venu.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+venud.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+venusq.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+venusqm.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+vivoactive3.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+vivoactive3d.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+vivoactive3m.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+vivoactive3mlte.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+vivoactive4.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+vivoactive4s.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+vivoactive_hr.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+edge130.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+edge130plus.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+edge_520.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+instinct2.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+instinct2s.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+descentg1.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+instinct2x.excludeAnnotations = low_memory_extra;empty_low_memory_standard
+instinctcrossover.excludeAnnotations = low_memory_extra;empty_low_memory_standard
 
 # Low memory devices exclude some hardcoded motivational quotes to save memory on devices CIQ 1.x
 d2bravo.resourcePath = $(d2bravo.resourcePath);resources-low_memory_basic
@@ -104,6 +111,8 @@ edge_520.resourcePath = $(edge_520.resourcePath);resources-low_memory_standard
 instinct2.resourcePath = $(instinct2.resourcePath);resources-low_memory_standard
 instinct2s.resourcePath = $(instinct2s.resourcePath);resources-low_memory_standard
 descentg1.resourcePath = $(descentg1.resourcePath);resources-low_memory_standard
+instinct2x.resourcePath = $(instinct2x.resourcePath);resources-low_memory_standard
+instinctcrossover.resourcePath = $(instinctcrossover.resourcePath);resources-low_memory_standard
 
 
 # Devices below 3.2 does not have alerts, exclude them from settings

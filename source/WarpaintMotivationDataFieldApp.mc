@@ -3,9 +3,9 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 
 // Global variables
-var motivationalQuoteChangeInterval as Number;
-var lowMemory as Integer;
-var displayAlerts as Integer;
+var motivationalQuoteChangeInterval as Integer = 600;
+var lowMemory as Integer = 0;
+var displayAlerts as Integer = 0;
 
 enum { 
     QUOTES_BASIC,
@@ -36,8 +36,8 @@ class WarpaintMotivationDataFieldApp extends Application.AppBase {
     }
 
     //! Return the initial view of your application here
-    function getInitialView() as Array<Views or InputDelegates>? {
-        return [ new WarpaintMotivationDataFieldView() ] as Array<Views or InputDelegates>;
+    function getInitialView() as [Views] or [Views, InputDelegates] {
+        return [ new WarpaintMotivationDataFieldView() ];
     }
 
     //! New app settings have been received so trigger a UI update

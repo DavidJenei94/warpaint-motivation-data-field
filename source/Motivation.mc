@@ -1,22 +1,21 @@
 import Toybox.WatchUi;
 import Toybox.Math;
+import Toybox.Lang;
+import Toybox.Graphics;
 
 class Motivation {
 
-    public var font as Number;
+	public var font as FontDefinition = Graphics.FONT_SMALL;
 
-	private var _fontBase as Integer;
+	// Maximum font size
+	private var _fontBase as FontDefinition = Graphics.FONT_LARGE;
 
-    private var _motivation as String;
-    private var _splittedMotivationalQuote as String;
-
-    private var _isMotivationalQuoteSet as Boolean;
-    private var _firstLineWidthPercent as Number;
-    private var _secondLineWidthPercent as Number;
-    private var _thirdLineWidthPercent as Number;
+	private var _firstLineWidthPercent as Float = 0.33;
+	private var _secondLineWidthPercent as Float = 0.33;
+	private var _thirdLineWidthPercent as Float = 0.33;
 
 	// 55
-    private var hardcodedMotivationalQuotesBasic = [
+	private var hardcodedMotivationalQuotesBasic as Array<String> = [
 		"I DIDN'T COME THIS FAR TO ONLY COME THIS FAR",
 		"PAIN IS TEMPORARY, BUT GREATNESS LASTS FOREVER",
 		"IF IT WAS EASY EVERYBODY WOULD DO IT",
@@ -74,8 +73,11 @@ class Motivation {
 		"SEE YOUR PROBLEMS AS CHALLENGES"
 	];
 
+	(:empty_low_memory_standard) private var hardcodedMotivationalQuotesStandard as Array<String> = [
+	];
+
 	// max 160 - 55
-	(:low_memory_standard) private var hardcodedMotivationalQuotesStandard = [
+	(:low_memory_standard) private var hardcodedMotivationalQuotesStandard as Array<String> = [
 		"THE HARDER THE TASK, THE MORE STRENGTH YOU GAIN",
 		"TAKE OWNERSHIP OF YOUR LIFE",
 		"TAKE THINGS TO THE NEXT LEVEL",
@@ -160,29 +162,51 @@ class Motivation {
 		"THE SOONER YOU DEAL WITH IT, THE SOONER IT PASS",
 		"IN THE END OUR CHOICES MAKE US",
 		"YOU CAN'T EXPECT TO GET AHEAD BY FITTING IN",
-		"SEPARATE YOURSELF FROM THE CROWD"
-		//20 more
+		"SEPARATE YOURSELF FROM THE CROWD",
+		"YOU NEED TO CHANGE OR NOTHING CHANGES",
+		"HAVE THE COURAGE TO PURSUE YOUR DREAMS",
+		"YOU DON'T HAVE TIME TO WASTE",
+		"SUCCESS STARTS WHEN YOU KEEP SHOWING UP",
+        "YOU DON'T GROW IN YOUR COMFORT ZONE",
+        "THE PAIN YOU FEEL TODAY BUILDS YOUR STRENGTH",
+        "CHALLENGES MAKE THE VICTORY SWEETER",
+        "YOUR FUTURE SELF WILL THANK YOU",
+        "SMALL STEPS EVERY DAY LEAD TO BIG CHANGES",
+        "YOU'LL NEVER REGRET GIVING YOUR BEST",
+        "TURN FAILURE INTO FUEL FOR YOUR DREAM",
+        "THE ONLY LIMIT IS THE ONE YOU SET",
+        "KEEP CLIMBING, THE VIEW IS WORTH IT",
+        "GREATNESS DEMANDS CONSISTENCY AND EFFORT",
+        "YOU HAVE THE POWER TO CREATE YOUR PATH",
+        "ONE MORE TRY COULD BE YOUR BREAKTHROUGH",
+        "THE ONLY COMPETITION IS WHO YOU WERE YESTERDAY",
+        "DREAM BIG, WORK HARD, STAY FOCUSED",
+        "EMBRACE THE STRUGGLE, IT SHAPES YOU",
+        "DISCIPLINE TURNS DREAMS INTO REALITY"
 	];
 
-	(:low_memory_extra) private var hardcodedMotivationalQuotesExtra = [
+	(:empty_low_memory_extra) private var hardcodedMotivationalQuotesExtra as Array<String> = [
 	];
 
-    //! Constructor
-    function initialize() {
-        _isMotivationalQuoteSet = true;
-    }
+	(:low_memory_extra) private var hardcodedMotivationalQuotesExtra as Array<String> = [
+        // New ones here
+	];
 
+	//! Constructor
+	function initialize() {
+	}
 
 	//! Split the motivational quote
 	//! @param dc Device Content
 	//! @return motivational quote splitted with line breaks
 	public function setMotivationalQuote(dc as Dc) as String {
 
+		// Keep track of the motivational quote parts until it should be splitted
 		var isMotivationSet = false;
 
-		var motivationFirstPart as String;
-		var motivationSecondPart as String;
-		var motivationThirdPart as String;
+		var motivationFirstPart = "";
+		var motivationSecondPart = "";
+		var motivationThirdPart = "";
 
 		// do until a motivational quote is not set that has enough space
 		do {
@@ -293,17 +317,10 @@ class Motivation {
 		}
 	}
 
-	//! Set font for motivational quote
-	//! When not gethardcodedquote is called but anything else
-	//! @param font the selected font
-	public function setFont(font as Number) as Void {
-		self.font = font;
-	}
-
 	//! Set fontBase (maximum font size) for motivational quote 
 	//! According to data field panel sizes
 	//! @param fontBase the selected maximum font size
-	public function setFontBase(fontBase as Integer) as Void {
+	public function setFontBase(fontBase as FontDefinition) as Void {
 		_fontBase = fontBase;
 	}
 
@@ -312,8 +329,8 @@ class Motivation {
 	//! @param motivation the selected motivational quote
 	private function setFontSize(dc as Dc, motivation as String) as Void {
 		var screenWidth = dc.getWidth();
-    	var motivationLengthInPixels = 0;
-    	var maxTextLength = screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent;
+		var motivationLengthInPixels = 0;
+		var maxTextLength = screenWidth * _firstLineWidthPercent + screenWidth * _secondLineWidthPercent + screenWidth * _thirdLineWidthPercent;
 	
 		// _fontBase 4->0, FONT_LARGE->FONT_XTINY
 		for (var iFont = _fontBase; iFont >= 0; iFont--){
@@ -325,12 +342,12 @@ class Motivation {
 			} 
 		}
 
-		font = 0;
+		font = Graphics.FONT_XTINY;
 	}
 
 	//! Set the line widths for the quote according to the dc panel sizes
 	//! @param firstLineWidth The length of the lines in % of the total dc panel size
-	public function setLineWidths(lineWidths as Array<Number>) as Void {
+	public function setLineWidths(lineWidths as Array<Float>) as Void {
 		_firstLineWidthPercent = lineWidths[0];
         _secondLineWidthPercent = lineWidths[1];
         _thirdLineWidthPercent = lineWidths[2];
