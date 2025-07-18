@@ -32,6 +32,8 @@ Motivational, Inspirational, Data, Information, Stylish, Original, Creative, Cus
 
 ## What's New
 
+### 2.0.2
+- Add Descent™ G2, Forerunner® 570 42mm, Forerunner® 570 47mm, Forerunner® 970, vívoactive® 6, Venu® X1, Edge® MTB support
 ### 2.0.1
 - Add Approach® S50, Instinct® 3 AMOLED 45mm, Instinct® 3 AMOLED 50mm, Instinct® 3 Solar 45mm / 50mm, Instinct® E 40mm, Instinct® E 45mm support
 ### 2.0.0
