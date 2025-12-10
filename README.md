@@ -38,13 +38,9 @@ Motivational, Inspirational, Data, Information, Stylish, Original, Creative, Cus
 
 ## What's New
 
-### 2.0.4
-
-- Add D2™ Mach 2, fēnix® 8 Pro 47mm / 51mm / MicroLED, Instinct® Crossover AMOLED, Venu® 4 41mm, Venu® 4 45mm / D2™ Air X15, Edge® 550, Edge® 850, eTrex® Touch, GPSMAP® H1 / H1i Plus support
-
 ### 2.0.3
 
-- Add Descent™ G2, Forerunner® 570 42mm, Forerunner® 570 47mm, Forerunner® 970, vívoactive® 6, Venu® X1, Edge® MTB support
+- Add D2™ Mach 2, fēnix® 8 Pro 47mm / 51mm / MicroLED, Instinct® Crossover AMOLED, Venu® 4 41mm, Venu® 4 45mm / D2™ Air X15, Edge® 550, Edge® 850, eTrex® Touch, GPSMAP® H1 / H1i Plus support
 
 ### 2.0.2
 
